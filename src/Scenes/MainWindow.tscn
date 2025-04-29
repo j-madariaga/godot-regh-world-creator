@@ -1,0 +1,290 @@
+[gd_scene load_steps=2 format=3 uid="uid://ceumwj54l0mth"]
+
+[ext_resource type="Script" uid="uid://dq1i886vl8ebn" path="res://src/Scripts/UI/WorldMapCreator.gd" id="1_m2b2n"]
+
+[node name="MainWindow" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_m2b2n")
+
+[node name="SideMenuButton" type="Button" parent="."]
+layout_mode = 0
+offset_right = 86.0
+offset_bottom = 59.0
+text = "..."
+
+[node name="SideMenu" type="PanelContainer" parent="."]
+layout_mode = 1
+offset_right = 256.0
+offset_bottom = 644.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SideMenu"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="SideMenu/VBoxContainer"]
+layout_mode = 2
+text = "WorldMapGenerator v0.1
+(Regular Heroes)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Separator5" type="Label" parent="SideMenu/VBoxContainer"]
+layout_mode = 2
+
+[node name="FileSave" type="HBoxContainer" parent="SideMenu/VBoxContainer"]
+layout_mode = 2
+
+[node name="LoadButton" type="LineEdit" parent="SideMenu/VBoxContainer/FileSave"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.44
+placeholder_text = "FileName"
+
+[node name="SaveButton" type="Button" parent="SideMenu/VBoxContainer/FileSave"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.0
+text = "Save"
+
+[node name="SavedFiles" type="ScrollContainer" parent="SideMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="SavedList" type="VBoxContainer" parent="SideMenu/VBoxContainer/SavedFiles"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.09
+
+[node name="Separator4" type="Label" parent="SideMenu/VBoxContainer"]
+layout_mode = 2
+
+[node name="Separator3" type="Label" parent="SideMenu/VBoxContainer"]
+layout_mode = 2
+
+[node name="GeneralInfo" type="Button" parent="SideMenu/VBoxContainer"]
+layout_mode = 2
+text = "General"
+
+[node name="FloorInfo" type="HBoxContainer" parent="SideMenu/VBoxContainer"]
+layout_mode = 2
+
+[node name="MainFloors" type="Button" parent="SideMenu/VBoxContainer/FloorInfo"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Floors"
+
+[node name="SpecialFloors" type="Button" parent="SideMenu/VBoxContainer/FloorInfo"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "SpecialFloors"
+
+[node name="GameplayInfo" type="Button" parent="SideMenu/VBoxContainer"]
+layout_mode = 2
+text = "Gameplay"
+
+[node name="DifficultyInfo" type="Button" parent="SideMenu/VBoxContainer"]
+layout_mode = 2
+text = "Difficulty"
+
+[node name="EndingInfo" type="Button" parent="SideMenu/VBoxContainer"]
+layout_mode = 2
+text = "Endings"
+
+[node name="Separator" type="Label" parent="SideMenu/VBoxContainer"]
+layout_mode = 2
+
+[node name="Separator2" type="Label" parent="SideMenu/VBoxContainer"]
+layout_mode = 2
+
+[node name="QuitMenu" type="Button" parent="SideMenu/VBoxContainer"]
+layout_mode = 2
+text = "Close menu"
+
+[node name="WorldInfoScreen" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -923.0
+offset_bottom = 648.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+
+[node name="Title" type="Label" parent="WorldInfoScreen"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "World Info"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NameContainer" type="HBoxContainer" parent="WorldInfoScreen"]
+layout_mode = 2
+
+[node name="NameText" type="Label" parent="WorldInfoScreen/NameContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Name"
+
+[node name="NameInput" type="LineEdit" parent="WorldInfoScreen/NameContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="InternalNameText" type="Label" parent="WorldInfoScreen/NameContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "InternalName"
+
+[node name="InternalNameInput" type="LineEdit" parent="WorldInfoScreen/NameContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DescLabel" type="Label" parent="WorldInfoScreen"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+text = "Description"
+vertical_alignment = 1
+
+[node name="DescInput" type="TextEdit" parent="WorldInfoScreen"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="BootDialogue" type="HBoxContainer" parent="WorldInfoScreen"]
+layout_mode = 2
+
+[node name="DescLabel" type="Label" parent="WorldInfoScreen/BootDialogue"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+text = "Boot dialogue"
+vertical_alignment = 1
+
+[node name="DialFileInput" type="LineEdit" parent="WorldInfoScreen/BootDialogue"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FirstBootDialogue" type="HBoxContainer" parent="WorldInfoScreen"]
+layout_mode = 2
+
+[node name="DescLabel" type="Label" parent="WorldInfoScreen/FirstBootDialogue"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+text = "First boot dialogue"
+vertical_alignment = 1
+
+[node name="DialFileInput" type="LineEdit" parent="WorldInfoScreen/FirstBootDialogue"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FloorInfoScreen" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -929.0
+offset_bottom = 648.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+
+[node name="Title" type="Label" parent="FloorInfoScreen"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "Floor Info"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SpecialFloorScreen" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -924.0
+offset_bottom = 648.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+
+[node name="Title" type="Label" parent="SpecialFloorScreen"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "Special floors Info"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameplayScreen" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -117.0
+offset_bottom = 34.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+
+[node name="Title" type="Label" parent="GameplayScreen"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "Gameplay"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DifficultyScreen" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -105.0
+offset_bottom = 34.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+
+[node name="Title" type="Label" parent="DifficultyScreen"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "Difficulty"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EndingsScreen" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -91.0
+offset_bottom = 34.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+
+[node name="Title" type="Label" parent="EndingsScreen"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "Endings"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="button_up" from="SideMenuButton" to="." method="ToggleSideMenu" binds= [true]]
+[connection signal="button_up" from="SideMenu/VBoxContainer/GeneralInfo" to="." method="OpenMenu" binds= [0]]
+[connection signal="button_up" from="SideMenu/VBoxContainer/FloorInfo/MainFloors" to="." method="OpenMenu" binds= [1]]
+[connection signal="button_up" from="SideMenu/VBoxContainer/FloorInfo/SpecialFloors" to="." method="OpenMenu" binds= [2]]
+[connection signal="button_up" from="SideMenu/VBoxContainer/GameplayInfo" to="." method="OpenMenu" binds= [3]]
+[connection signal="button_up" from="SideMenu/VBoxContainer/DifficultyInfo" to="." method="OpenMenu" binds= [4]]
+[connection signal="button_up" from="SideMenu/VBoxContainer/EndingInfo" to="." method="OpenMenu" binds= [5]]
+[connection signal="button_up" from="SideMenu/VBoxContainer/QuitMenu" to="." method="ToggleSideMenu" binds= [false]]
