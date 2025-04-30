@@ -19,6 +19,8 @@ extends Resource
 @export var endingDialogueArray := [];
 
 @export_group("Gameplay variables")
+@export var characters : Array[String] = [];
+@export var artifacts : Array[String] = [];
 @export var gameplayVariables : Dictionary = {};
 @export var gameplayScript : Script;
 

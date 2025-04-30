@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://defnvhdqqplq7"]
+
+[ext_resource type="Script" uid="uid://bxbjptt6hc2ph" path="res://src/Scripts/UI/NodeWeightEntry.gd" id="1_42omk"]
+
+[node name="NodeWeightEntry" type="HBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1000.0
+offset_bottom = -617.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_42omk")
+
+[node name="NodeType" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "TYPE"
+
+[node name="WeightInput" type="LineEdit" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0.0"
+placeholder_text = "Weight value"
+max_length = 5

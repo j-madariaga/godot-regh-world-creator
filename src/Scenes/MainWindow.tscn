@@ -37,7 +37,7 @@ layout_mode = 2
 [node name="FileSave" type="HBoxContainer" parent="SideMenu/VBoxContainer"]
 layout_mode = 2
 
-[node name="LoadButton" type="LineEdit" parent="SideMenu/VBoxContainer/FileSave"]
+[node name="FilenameInput" type="LineEdit" parent="SideMenu/VBoxContainer/FileSave"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 4.44
@@ -108,12 +108,13 @@ text = "Close menu"
 [node name="WorldInfoScreen" type="VBoxContainer" parent="."]
 visible = false
 layout_mode = 1
-anchors_preset = 1
+anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -923.0
-offset_bottom = 648.0
+anchor_bottom = 1.0
+offset_left = -616.0
 grow_horizontal = 0
+grow_vertical = 2
 size_flags_horizontal = 3
 
 [node name="Title" type="Label" parent="WorldInfoScreen"]
@@ -130,6 +131,7 @@ layout_mode = 2
 [node name="NameText" type="Label" parent="WorldInfoScreen/NameContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.0
 text = "Name"
 
 [node name="NameInput" type="LineEdit" parent="WorldInfoScreen/NameContainer"]
@@ -139,9 +141,23 @@ size_flags_horizontal = 3
 [node name="InternalNameText" type="Label" parent="WorldInfoScreen/NameContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.0
 text = "InternalName"
 
 [node name="InternalNameInput" type="LineEdit" parent="WorldInfoScreen/NameContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.41
+
+[node name="SplashImage" type="HBoxContainer" parent="WorldInfoScreen"]
+layout_mode = 2
+
+[node name="NameText" type="Label" parent="WorldInfoScreen/SplashImage"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Splash texture (File name)"
+
+[node name="TextureName" type="LineEdit" parent="WorldInfoScreen/SplashImage"]
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -156,20 +172,7 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-
-[node name="BootDialogue" type="HBoxContainer" parent="WorldInfoScreen"]
-layout_mode = 2
-
-[node name="DescLabel" type="Label" parent="WorldInfoScreen/BootDialogue"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 5
-text = "Boot dialogue"
-vertical_alignment = 1
-
-[node name="DialFileInput" type="LineEdit" parent="WorldInfoScreen/BootDialogue"]
-layout_mode = 2
-size_flags_horizontal = 3
+wrap_mode = 1
 
 [node name="FirstBootDialogue" type="HBoxContainer" parent="WorldInfoScreen"]
 layout_mode = 2
@@ -186,14 +189,14 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="FloorInfoScreen" type="VBoxContainer" parent="."]
-visible = false
 layout_mode = 1
-anchors_preset = 1
+anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -929.0
-offset_bottom = 648.0
+anchor_bottom = 1.0
+offset_left = -789.0
 grow_horizontal = 0
+grow_vertical = 2
 size_flags_horizontal = 3
 
 [node name="Title" type="Label" parent="FloorInfoScreen"]
@@ -204,15 +207,39 @@ text = "Floor Info"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="HBoxContainer" type="HBoxContainer" parent="FloorInfoScreen"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Title" type="Label" parent="FloorInfoScreen/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Floor List"
+vertical_alignment = 1
+
+[node name="AddFloorButton" type="Button" parent="FloorInfoScreen/HBoxContainer"]
+layout_mode = 2
+text = "New Floor +"
+
+[node name="FloorScroll" type="ScrollContainer" parent="FloorInfoScreen"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="FloorList" type="VBoxContainer" parent="FloorInfoScreen/FloorScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
 [node name="SpecialFloorScreen" type="VBoxContainer" parent="."]
 visible = false
 layout_mode = 1
-anchors_preset = 1
+anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -924.0
-offset_bottom = 648.0
+anchor_bottom = 1.0
+offset_left = -616.0
 grow_horizontal = 0
+grow_vertical = 2
 size_flags_horizontal = 3
 
 [node name="Title" type="Label" parent="SpecialFloorScreen"]
@@ -223,15 +250,37 @@ text = "Special floors Info"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="HBoxContainer" type="HBoxContainer" parent="SpecialFloorScreen"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Title" type="Label" parent="SpecialFloorScreen/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Floor List"
+vertical_alignment = 1
+
+[node name="AddFloorButton" type="Button" parent="SpecialFloorScreen/HBoxContainer"]
+layout_mode = 2
+text = "New Floor +"
+
+[node name="FloorScroll" type="ScrollContainer" parent="SpecialFloorScreen"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="FloorList" type="VBoxContainer" parent="SpecialFloorScreen/FloorScroll"]
+layout_mode = 2
+
 [node name="GameplayScreen" type="VBoxContainer" parent="."]
 visible = false
 layout_mode = 1
-anchors_preset = 1
+anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -117.0
-offset_bottom = 34.0
+anchor_bottom = 1.0
+offset_left = -660.0
 grow_horizontal = 0
+grow_vertical = 2
 size_flags_horizontal = 3
 
 [node name="Title" type="Label" parent="GameplayScreen"]
@@ -242,15 +291,61 @@ text = "Gameplay"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Hold" type="HBoxContainer" parent="GameplayScreen"]
+layout_mode = 2
+
+[node name="Characters" type="VBoxContainer" parent="GameplayScreen/Hold"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="GameplayScreen/Hold/Characters"]
+layout_mode = 2
+text = "Characters"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="GameplayScreen/Hold/Characters"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameplayScreen/Hold/Characters/ScrollContainer"]
+layout_mode = 2
+
+[node name="Rules" type="VBoxContainer" parent="GameplayScreen/Hold"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="GameplayScreen/Hold/Rules"]
+layout_mode = 2
+text = "Rules"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Artifacts" type="VBoxContainer" parent="GameplayScreen/Hold"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="GameplayScreen/Hold/Artifacts"]
+layout_mode = 2
+text = "Artifacts"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="GameplayScreen/Hold/Artifacts"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameplayScreen/Hold/Artifacts/ScrollContainer"]
+layout_mode = 2
+
 [node name="DifficultyScreen" type="VBoxContainer" parent="."]
 visible = false
 layout_mode = 1
-anchors_preset = 1
+anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -105.0
-offset_bottom = 34.0
+anchor_bottom = 1.0
+offset_left = -617.0
 grow_horizontal = 0
+grow_vertical = 2
 size_flags_horizontal = 3
 
 [node name="Title" type="Label" parent="DifficultyScreen"]
@@ -264,12 +359,13 @@ vertical_alignment = 1
 [node name="EndingsScreen" type="VBoxContainer" parent="."]
 visible = false
 layout_mode = 1
-anchors_preset = 1
+anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -91.0
-offset_bottom = 34.0
+anchor_bottom = 1.0
+offset_left = -620.0
 grow_horizontal = 0
+grow_vertical = 2
 size_flags_horizontal = 3
 
 [node name="Title" type="Label" parent="EndingsScreen"]
@@ -281,6 +377,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [connection signal="button_up" from="SideMenuButton" to="." method="ToggleSideMenu" binds= [true]]
+[connection signal="button_up" from="SideMenu/VBoxContainer/FileSave/SaveButton" to="." method="Save"]
 [connection signal="button_up" from="SideMenu/VBoxContainer/GeneralInfo" to="." method="OpenMenu" binds= [0]]
 [connection signal="button_up" from="SideMenu/VBoxContainer/FloorInfo/MainFloors" to="." method="OpenMenu" binds= [1]]
 [connection signal="button_up" from="SideMenu/VBoxContainer/FloorInfo/SpecialFloors" to="." method="OpenMenu" binds= [2]]
@@ -288,3 +385,5 @@ vertical_alignment = 1
 [connection signal="button_up" from="SideMenu/VBoxContainer/DifficultyInfo" to="." method="OpenMenu" binds= [4]]
 [connection signal="button_up" from="SideMenu/VBoxContainer/EndingInfo" to="." method="OpenMenu" binds= [5]]
 [connection signal="button_up" from="SideMenu/VBoxContainer/QuitMenu" to="." method="ToggleSideMenu" binds= [false]]
+[connection signal="button_up" from="FloorInfoScreen/HBoxContainer/AddFloorButton" to="." method="AddFloorButton"]
+[connection signal="button_up" from="SpecialFloorScreen/HBoxContainer/AddFloorButton" to="." method="AddSpecialFloorButton"]

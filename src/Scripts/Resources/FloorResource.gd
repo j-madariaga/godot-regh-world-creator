@@ -18,3 +18,6 @@ extends Resource
 
 @export_group("Events")
 @export var events : Dictionary = {};
+
+@export_group("Dialogues")
+@export var dialogues : Dictionary = {};

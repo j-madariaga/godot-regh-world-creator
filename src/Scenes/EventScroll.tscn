@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0xm4255gttf5"]
+
+[ext_resource type="Script" uid="uid://dvv8dfahspulf" path="res://src/Scripts/UI/EventScroll.gd" id="1_14dsc"]
+
+[node name="EventScrollHolder" type="VBoxContainer"]
+offset_right = 528.0
+offset_bottom = 151.0
+script = ExtResource("1_14dsc")
+
+[node name="Buttons" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Buttons"]
+layout_mode = 2
+text = "Add event"
+
+[node name="EventScroll" type="ScrollContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 5.82
+
+[node name="EventList" type="HBoxContainer" parent="EventScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[connection signal="button_up" from="Buttons/Button" to="." method="AddEventBox"]

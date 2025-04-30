@@ -1,0 +1,265 @@
+[gd_scene load_steps=2 format=3 uid="uid://bkwmth6t26t4"]
+
+[ext_resource type="Script" uid="uid://dhpj1qiwluv4u" path="res://src/Scripts/UI/FloorButton.gd" id="1_axj3p"]
+
+[node name="FloorButton" type="PanelContainer"]
+self_modulate = Color(0, 1, 1, 1)
+custom_minimum_size = Vector2(663, 232)
+anchors_preset = -1
+anchor_right = 0.576
+anchor_bottom = 0.358
+offset_bottom = 0.0159912
+script = ExtResource("1_axj3p")
+
+[node name="Organizer" type="Control" parent="."]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Organizer"]
+layout_mode = 2
+offset_right = 663.0
+offset_bottom = 31.0
+
+[node name="FloorTag" type="Label" parent="Organizer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.41
+text = "Floor "
+horizontal_alignment = 1
+
+[node name="TabBar" type="TabBar" parent="Organizer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+current_tab = 0
+tab_alignment = 2
+deselect_enabled = true
+tab_count = 4
+tab_0/title = "General Info"
+tab_1/title = "Map Generation"
+tab_2/title = "Event Pool"
+tab_3/title = "Dialogues"
+
+[node name="GeneralInfoData" type="HBoxContainer" parent="Organizer"]
+visible = false
+layout_mode = 2
+offset_top = 35.0
+offset_right = 663.0
+offset_bottom = 234.0
+size_flags_vertical = 3
+
+[node name="Right" type="VBoxContainer" parent="Organizer/GeneralInfoData"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Name" type="HBoxContainer" parent="Organizer/GeneralInfoData/Right"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Organizer/GeneralInfoData/Right/Name"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Name"
+
+[node name="NameInput" type="LineEdit" parent="Organizer/GeneralInfoData/Right/Name"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Description" type="VBoxContainer" parent="Organizer/GeneralInfoData/Right"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="Organizer/GeneralInfoData/Right/Description"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Description"
+
+[node name="DescInput" type="TextEdit" parent="Organizer/GeneralInfoData/Right/Description"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Splash" type="VBoxContainer" parent="Organizer/GeneralInfoData/Right"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.41
+
+[node name="Label" type="Label" parent="Organizer/GeneralInfoData/Right/Splash"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Splash Image"
+
+[node name="ImageInput" type="LineEdit" parent="Organizer/GeneralInfoData/Right/Splash"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VSeparator" type="VSeparator" parent="Organizer/GeneralInfoData"]
+layout_mode = 2
+
+[node name="Left" type="VBoxContainer" parent="Organizer/GeneralInfoData"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.76
+
+[node name="MapGenData" type="HBoxContainer" parent="Organizer"]
+visible = false
+layout_mode = 2
+offset_top = 36.0
+offset_right = 663.0
+offset_bottom = 232.0
+size_flags_vertical = 3
+
+[node name="Right" type="VBoxContainer" parent="Organizer/MapGenData"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.23
+
+[node name="Layers" type="HBoxContainer" parent="Organizer/MapGenData/Right"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="Organizer/MapGenData/Right/Layers"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Layers (min, max)"
+
+[node name="MinInput" type="LineEdit" parent="Organizer/MapGenData/Right/Layers"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.2
+
+[node name="MaxInput" type="LineEdit" parent="Organizer/MapGenData/Right/Layers"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.2
+
+[node name="NPLayer" type="HBoxContainer" parent="Organizer/MapGenData/Right"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="Organizer/MapGenData/Right/NPLayer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Nodes per layer (min, max)"
+
+[node name="MinInput" type="LineEdit" parent="Organizer/MapGenData/Right/NPLayer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.2
+
+[node name="MaxInput" type="LineEdit" parent="Organizer/MapGenData/Right/NPLayer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.2
+
+[node name="Paths" type="HBoxContainer" parent="Organizer/MapGenData/Right"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="Organizer/MapGenData/Right/Paths"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Paths (min, max)"
+
+[node name="MinInput" type="LineEdit" parent="Organizer/MapGenData/Right/Paths"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.2
+
+[node name="MaxInput" type="LineEdit" parent="Organizer/MapGenData/Right/Paths"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.2
+
+[node name="VSeparator" type="VSeparator" parent="Organizer/MapGenData"]
+layout_mode = 2
+
+[node name="Left" type="VBoxContainer" parent="Organizer/MapGenData"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Weights" type="VBoxContainer" parent="Organizer/MapGenData/Left"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="Organizer/MapGenData/Left/Weights"]
+layout_mode = 2
+text = "Node weights"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Organizer/MapGenData/Left/Weights"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="WeightList" type="VBoxContainer" parent="Organizer/MapGenData/Left/Weights/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="AdditionalRules" type="VBoxContainer" parent="Organizer/MapGenData/Left"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Organizer/MapGenData/Left/AdditionalRules"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Additional generation rules (script)"
+
+[node name="ScriptInput" type="LineEdit" parent="Organizer/MapGenData/Left/AdditionalRules"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="EventData" type="HBoxContainer" parent="Organizer"]
+layout_mode = 2
+offset_top = 36.0
+offset_right = 665.0
+offset_bottom = 233.0
+size_flags_vertical = 3
+
+[node name="Right" type="VBoxContainer" parent="Organizer/EventData"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="EventTypes" type="HBoxContainer" parent="Organizer/EventData/Right"]
+layout_mode = 2
+
+[node name="EventTypes" type="Label" parent="Organizer/EventData/Right/EventTypes"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.0
+text = "Event types"
+
+[node name="TypeInput" type="LineEdit" parent="Organizer/EventData/Right/EventTypes"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 1.14
+
+[node name="AddType" type="Button" parent="Organizer/EventData/Right/EventTypes"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.2
+text = "Add+
+"
+
+[node name="TypeBar" type="TabBar" parent="Organizer/EventData/Right"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.44
+current_tab = 0
+tab_close_display_policy = 1
+tab_count = 3
+tab_0/title = "FIGHT"
+tab_1/title = "ENCOUNTER"
+tab_2/title = "BOSS"
+
+[node name="ScrollHolder" type="Control" parent="Organizer/EventData/Right"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[connection signal="tab_changed" from="Organizer/HBoxContainer/TabBar" to="." method="SwitchTab"]
+[connection signal="button_up" from="Organizer/EventData/Right/EventTypes/AddType" to="." method="AddNodeType"]
+[connection signal="tab_close_pressed" from="Organizer/EventData/Right/TypeBar" to="." method="RemoveNodeType"]
