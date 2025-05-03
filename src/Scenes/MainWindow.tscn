@@ -124,13 +124,16 @@ text = "Close menu"
 
 [node name="WorldInfoScreen" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 11
-anchor_left = 1.0
+anchors_preset = -1
+anchor_left = 0.465
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -616.0
+offset_left = 66.3199
+offset_right = -105.0
+offset_bottom = -128.0
 grow_horizontal = 0
 grow_vertical = 2
+scale = Vector2(1.24, 1.24)
 size_flags_horizontal = 3
 
 [node name="Title" type="Label" parent="WorldInfoScreen"]

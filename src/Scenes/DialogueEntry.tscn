@@ -47,3 +47,8 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_vertical = 3
 text = "Auto skip dialogue"
+
+[node name="FirstBoot" type="CheckButton" parent="Organizer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "1st time dialogue"

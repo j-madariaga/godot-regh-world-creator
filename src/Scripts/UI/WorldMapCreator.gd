@@ -231,7 +231,7 @@ func LoadJSON(fileName : String = ""):
 	
 func LoadResource(fileName : String = ""):
 	
-	var worldRes := ResourceLoader.load(OUTPUT_PATH + "/" + fileName);
+	var worldRes := ResourceLoader.load(OUTPUT_PATH + "/" + fileName) as WorldResource;
 	
 	if worldRes == null:
 		print("ERROR: resource % s failed to load!" % [fileName]);
@@ -251,7 +251,16 @@ func LoadResource(fileName : String = ""):
 		dialEntry.dialName.text = dial.internalName;
 		dialEntry.triggerChance.text = str(int(dial.triggerChance));
 		dialEntry.autoSkip.button_pressed = dial.autoSkip;
-	
+		
+	for fl in worldRes.floors:
+		var floorButton = FLOOR_BUTTON_ARCH.instantiate();
+		floorList.add_child(floorButton);
+		floorButton.Load(fl);
+		
+	for fl in worldRes.specFloors:
+		var floorButton = FLOOR_BUTTON_ARCH.instantiate();
+		specialFloorList.add_child(floorButton);
+		floorButton.Load(fl);
 	
 	return;
 
@@ -260,19 +269,18 @@ func Load(fileName : String = ""):
 	
 	if fileName.contains(".json"):
 		inputFilename.text = fileName.trim_suffix(".json");
+		fileExtensionList.select(0);
 		LoadJSON()
 		
 	if fileName.contains(".res"):
 		inputFilename.text = fileName.trim_suffix(".res");
+		fileExtensionList.select(2);
 		LoadResource(fileName)
 		
 	if fileName.contains(".tres"):
 		inputFilename.text = fileName.trim_suffix(".tres");
+		fileExtensionList.select(1);
 		LoadResource(fileName);
-		
-
-	else:
-		printerr("ERROR: COULD NOT LOAD FILE")
 	
 	return;	
 

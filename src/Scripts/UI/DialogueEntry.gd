@@ -4,6 +4,7 @@ extends Panel
 @onready var dialName = $Organizer/Name/NameInput
 @onready var triggerChance = $Organizer/TriggerChance/TriggerChance
 @onready var autoSkip = $Organizer/AutoSkip
+@onready var firstBoot = $Organizer/FirstBoot
 
 func Load(_data : Variant = null):
 	if _data == null:
@@ -14,12 +15,14 @@ func LoadJSON(data := {}):
 	dialName.text = data["internalName"];
 	triggerChance.text = str(data["triggerChance"]);
 	autoSkip.button_pressed = data["autoSkip"];
+	firstBoot.button_pressed = data["firstBoot"];
 	return;
 		
 func LoadResource(dialData : DialogueInfo):
 	dialName.text = dialData.internalName;
-	triggerChance.text = dialData.triggerChance;
+	triggerChance.text = str(dialData.triggerChance);
 	autoSkip.button_pressed = dialData.autoSkip;
+	firstBoot.button_pressed = dialData.firstBootTrigger;
 	return;
 	
 func SaveJSON() -> Dictionary:
@@ -27,6 +30,7 @@ func SaveJSON() -> Dictionary:
 	data["internalName"] = dialName.text;
 	data["triggerChance"] = int(triggerChance.text);
 	data["autoSkip"] = autoSkip.button_pressed;
+	data["firstBoot"] = firstBoot.button_pressed;
 	return data;
 
 func SaveResource() -> DialogueInfo:
@@ -34,4 +38,5 @@ func SaveResource() -> DialogueInfo:
 	dial.internalName = dialName.text;
 	dial.triggerChance = int(triggerChance.text);
 	dial.autoSkip = autoSkip.button_pressed;
+	dial.firstBootTrigger = firstBoot.button_pressed;
 	return dial;

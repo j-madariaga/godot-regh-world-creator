@@ -1,10 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://bkwmth6t26t4"]
+[gd_scene load_steps=3 format=3 uid="uid://bkwmth6t26t4"]
 
 [ext_resource type="Script" uid="uid://dhpj1qiwluv4u" path="res://src/Scripts/UI/FloorButton.gd" id="1_axj3p"]
+[ext_resource type="PackedScene" uid="uid://b0xm4255gttf5" path="res://src/Scenes/EventScroll.tscn" id="2_ha7n5"]
 
 [node name="FloorButton" type="PanelContainer"]
 self_modulate = Color(0, 1, 1, 1)
-custom_minimum_size = Vector2(700, 300)
+custom_minimum_size = Vector2(700, 400)
 anchors_preset = -1
 anchor_right = 0.608
 anchor_bottom = 0.463
@@ -17,7 +18,7 @@ layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Organizer"]
 layout_mode = 2
-offset_right = 663.0
+offset_right = 701.0
 offset_bottom = 31.0
 
 [node name="FloorTag" type="Label" parent="Organizer/HBoxContainer"]
@@ -44,8 +45,8 @@ tab_3/title = "Dialogues"
 visible = false
 layout_mode = 2
 offset_top = 35.0
-offset_right = 663.0
-offset_bottom = 234.0
+offset_right = 700.0
+offset_bottom = 272.0
 size_flags_vertical = 3
 
 [node name="Right" type="VBoxContainer" parent="Organizer/GeneralInfoData"]
@@ -77,6 +78,8 @@ text = "Description"
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+wrap_mode = 1
+autowrap_mode = 2
 
 [node name="Splash" type="VBoxContainer" parent="Organizer/GeneralInfoData/Right"]
 layout_mode = 2
@@ -103,9 +106,10 @@ size_flags_stretch_ratio = 0.76
 [node name="MapGenData" type="HBoxContainer" parent="Organizer"]
 visible = false
 layout_mode = 2
+offset_left = 29.0
 offset_top = 36.0
-offset_right = 663.0
-offset_bottom = 232.0
+offset_right = 683.0
+offset_bottom = 282.0
 size_flags_vertical = 3
 
 [node name="Right" type="VBoxContainer" parent="Organizer/MapGenData"]
@@ -215,8 +219,8 @@ size_flags_horizontal = 3
 [node name="EventData" type="HBoxContainer" parent="Organizer"]
 layout_mode = 2
 offset_top = 36.0
-offset_right = 665.0
-offset_bottom = 233.0
+offset_right = 693.0
+offset_bottom = 362.0
 size_flags_vertical = 3
 
 [node name="Right" type="VBoxContainer" parent="Organizer/EventData"]
@@ -260,6 +264,8 @@ size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.44
 current_tab = 0
 tab_close_display_policy = 1
+drag_to_rearrange_enabled = true
+deselect_enabled = true
 tab_count = 3
 tab_0/title = "FIGHT"
 tab_1/title = "ENCOUNTER"
@@ -269,12 +275,23 @@ tab_2/title = "BOSS"
 layout_mode = 2
 size_flags_vertical = 3
 
+[node name="EventScrollHolder" parent="Organizer/EventData/Right/ScrollHolder" instance=ExtResource("2_ha7n5")]
+layout_mode = 0
+
+[node name="EventScrollHolder2" parent="Organizer/EventData/Right/ScrollHolder" instance=ExtResource("2_ha7n5")]
+visible = false
+layout_mode = 0
+
+[node name="EventScrollHolder3" parent="Organizer/EventData/Right/ScrollHolder" instance=ExtResource("2_ha7n5")]
+visible = false
+layout_mode = 0
+
 [node name="DialogueData" type="HBoxContainer" parent="Organizer"]
 visible = false
 layout_mode = 2
 offset_top = 36.0
-offset_right = 665.0
-offset_bottom = 233.0
+offset_right = 697.0
+offset_bottom = 327.0
 size_flags_vertical = 3
 
 [node name="Right" type="VBoxContainer" parent="Organizer/DialogueData"]

@@ -4,7 +4,7 @@ extends Resource
 @export_group("General info")
 @export var name : String = "";
 @export var description : String = "";
-@export var splashImage = "";
+@export var splashImageFilename : String= "";
 @export var floorEnterDialogues := []
 
 @export_group("Map Generation")
@@ -15,10 +15,10 @@ extends Resource
 @export var minNodePaths : int = 0;
 @export var maxNodePaths : int = 0;
 @export var nodeTypeWeights : Dictionary = {}
-@export var additionalRules : Dictionary;
+@export var additionalMapGenRules : String = "";
 
 @export_group("Events")
 @export var events : Dictionary = {};
 
 @export_group("Dialogues")
-@export var dialogues : Dictionary = {};
+@export var bootDialogues : Dictionary = {};

@@ -3,8 +3,9 @@
 [ext_resource type="Script" uid="uid://dvv8dfahspulf" path="res://src/Scripts/UI/EventScroll.gd" id="1_14dsc"]
 
 [node name="EventScrollHolder" type="VBoxContainer"]
-offset_right = 528.0
-offset_bottom = 235.0
+custom_minimum_size = Vector2(550, 350)
+offset_right = 550.0
+offset_bottom = 350.0
 script = ExtResource("1_14dsc")
 
 [node name="Buttons" type="HBoxContainer" parent="."]
