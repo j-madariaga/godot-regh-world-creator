@@ -4,11 +4,12 @@
 
 [node name="FloorButton" type="PanelContainer"]
 self_modulate = Color(0, 1, 1, 1)
-custom_minimum_size = Vector2(663, 232)
+custom_minimum_size = Vector2(700, 300)
 anchors_preset = -1
-anchor_right = 0.576
-anchor_bottom = 0.358
-offset_bottom = 0.0159912
+anchor_right = 0.608
+anchor_bottom = 0.463
+offset_right = -36.864
+offset_bottom = -68.024
 script = ExtResource("1_axj3p")
 
 [node name="Organizer" type="Control" parent="."]
@@ -236,6 +237,14 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 size_flags_stretch_ratio = 1.14
+placeholder_text = "Event tag"
+
+[node name="EvResourceInput" type="LineEdit" parent="Organizer/EventData/Right/EventTypes"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 1.14
+placeholder_text = "Event resource filename (TODO)"
 
 [node name="AddType" type="Button" parent="Organizer/EventData/Right/EventTypes"]
 layout_mode = 2
@@ -260,6 +269,38 @@ tab_2/title = "BOSS"
 layout_mode = 2
 size_flags_vertical = 3
 
+[node name="DialogueData" type="HBoxContainer" parent="Organizer"]
+visible = false
+layout_mode = 2
+offset_top = 36.0
+offset_right = 665.0
+offset_bottom = 233.0
+size_flags_vertical = 3
+
+[node name="Right" type="VBoxContainer" parent="Organizer/DialogueData"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="New dialogue" type="HBoxContainer" parent="Organizer/DialogueData/Right"]
+layout_mode = 2
+
+[node name="AddDialogue" type="Button" parent="Organizer/DialogueData/Right/New dialogue"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.2
+text = "New dialogue+
+"
+
+[node name="ScrollHolder" type="ScrollContainer" parent="Organizer/DialogueData/Right"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DialogueList" type="HBoxContainer" parent="Organizer/DialogueData/Right/ScrollHolder"]
+layout_mode = 2
+
 [connection signal="tab_changed" from="Organizer/HBoxContainer/TabBar" to="." method="SwitchTab"]
 [connection signal="button_up" from="Organizer/EventData/Right/EventTypes/AddType" to="." method="AddNodeType"]
+[connection signal="tab_changed" from="Organizer/EventData/Right/TypeBar" to="." method="SwitchEventTab"]
 [connection signal="tab_close_pressed" from="Organizer/EventData/Right/TypeBar" to="." method="RemoveNodeType"]
+[connection signal="button_up" from="Organizer/DialogueData/Right/New dialogue/AddDialogue" to="." method="AddFloorDialogue"]

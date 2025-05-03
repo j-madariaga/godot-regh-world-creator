@@ -1,0 +1,49 @@
+[gd_scene load_steps=2 format=3 uid="uid://t6obwylht7rw"]
+
+[ext_resource type="Script" uid="uid://ce3s0xketsa4h" path="res://src/Scripts/UI/DialogueEntry.gd" id="1_twkl2"]
+
+[node name="DialogueEntry" type="Panel"]
+custom_minimum_size = Vector2(480, 200)
+anchors_preset = -1
+anchor_right = 0.42
+anchor_bottom = 0.309
+offset_right = 0.159973
+offset_bottom = -0.23201
+script = ExtResource("1_twkl2")
+
+[node name="Organizer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 7.0
+offset_right = 445.0
+offset_bottom = 171.0
+
+[node name="Name" type="HBoxContainer" parent="Organizer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="Organizer/Name"]
+layout_mode = 2
+text = "Dialogue name"
+
+[node name="NameInput" type="LineEdit" parent="Organizer/Name"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TriggerChance" type="HBoxContainer" parent="Organizer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="Organizer/TriggerChance"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Trigger chance (0-100)"
+
+[node name="TriggerChance" type="LineEdit" parent="Organizer/TriggerChance"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AutoSkip" type="CheckButton" parent="Organizer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Auto skip dialogue"

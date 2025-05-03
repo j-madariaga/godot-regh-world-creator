@@ -14,6 +14,7 @@ extends Resource
 @export var minNodesPerLayer : int = 0;
 @export var minNodePaths : int = 0;
 @export var maxNodePaths : int = 0;
+@export var nodeTypeWeights : Dictionary = {}
 @export var additionalRules : Dictionary;
 
 @export_group("Events")

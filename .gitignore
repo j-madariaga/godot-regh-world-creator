@@ -4,3 +4,4 @@
 *.uid
 .editorconfig
 output
+*.tmp

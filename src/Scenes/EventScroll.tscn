@@ -4,7 +4,7 @@
 
 [node name="EventScrollHolder" type="VBoxContainer"]
 offset_right = 528.0
-offset_bottom = 151.0
+offset_bottom = 235.0
 script = ExtResource("1_14dsc")
 
 [node name="Buttons" type="HBoxContainer" parent="."]
@@ -18,10 +18,11 @@ text = "Add event"
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 5.82
+vertical_scroll_mode = 0
 
 [node name="EventList" type="HBoxContainer" parent="EventScroll"]
+custom_minimum_size = Vector2(500, 150)
 layout_mode = 2
-size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [connection signal="button_up" from="Buttons/Button" to="." method="AddEventBox"]

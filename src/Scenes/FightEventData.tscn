@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b24c4ykkqk73t"]
 
-[node name="PanelContainer" type="PanelContainer"]
+[node name="FightEvent" type="PanelContainer"]
 offset_right = 583.0
 offset_bottom = 237.0
 

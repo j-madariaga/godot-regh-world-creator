@@ -34,6 +34,12 @@ vertical_alignment = 1
 [node name="Separator5" type="Label" parent="SideMenu/VBoxContainer"]
 layout_mode = 2
 
+[node name="New world" type="Button" parent="SideMenu/VBoxContainer/Separator5"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "New world"
+
 [node name="FileSave" type="HBoxContainer" parent="SideMenu/VBoxContainer"]
 layout_mode = 2
 
@@ -42,6 +48,17 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 4.44
 placeholder_text = "FileName"
+
+[node name="FileExtensions" type="OptionButton" parent="SideMenu/VBoxContainer/FileSave"]
+layout_mode = 2
+selected = 0
+item_count = 3
+popup/item_0/text = ".json"
+popup/item_0/id = 0
+popup/item_1/text = ".tres"
+popup/item_1/id = 1
+popup/item_2/text = ".res"
+popup/item_2/id = 2
 
 [node name="SaveButton" type="Button" parent="SideMenu/VBoxContainer/FileSave"]
 layout_mode = 2
@@ -106,7 +123,6 @@ layout_mode = 2
 text = "Close menu"
 
 [node name="WorldInfoScreen" type="VBoxContainer" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -188,7 +204,21 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="AddBootDialogue" type="Button" parent="WorldInfoScreen"]
+layout_mode = 2
+text = "Add dialogue"
+
+[node name="BootDialogues" type="ScrollContainer" parent="WorldInfoScreen"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="List" type="HBoxContainer" parent="WorldInfoScreen/BootDialogues"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
 [node name="FloorInfoScreen" type="VBoxContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -377,6 +407,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [connection signal="button_up" from="SideMenuButton" to="." method="ToggleSideMenu" binds= [true]]
+[connection signal="button_up" from="SideMenu/VBoxContainer/Separator5/New world" to="." method="NewWorld"]
 [connection signal="button_up" from="SideMenu/VBoxContainer/FileSave/SaveButton" to="." method="Save"]
 [connection signal="button_up" from="SideMenu/VBoxContainer/GeneralInfo" to="." method="OpenMenu" binds= [0]]
 [connection signal="button_up" from="SideMenu/VBoxContainer/FloorInfo/MainFloors" to="." method="OpenMenu" binds= [1]]
@@ -385,5 +416,6 @@ vertical_alignment = 1
 [connection signal="button_up" from="SideMenu/VBoxContainer/DifficultyInfo" to="." method="OpenMenu" binds= [4]]
 [connection signal="button_up" from="SideMenu/VBoxContainer/EndingInfo" to="." method="OpenMenu" binds= [5]]
 [connection signal="button_up" from="SideMenu/VBoxContainer/QuitMenu" to="." method="ToggleSideMenu" binds= [false]]
+[connection signal="button_up" from="WorldInfoScreen/AddBootDialogue" to="." method="AddBootDialogueEntry"]
 [connection signal="button_up" from="FloorInfoScreen/HBoxContainer/AddFloorButton" to="." method="AddFloorButton"]
 [connection signal="button_up" from="SpecialFloorScreen/HBoxContainer/AddFloorButton" to="." method="AddSpecialFloorButton"]

@@ -5,7 +5,7 @@ extends Resource
 @export var name : String = "";
 @export var internalName : String = "";
 @export var description  : String =  "";
-@export var menuImage : Texture2D = Texture2D.new();
+@export var menuImageFilename : String = "";
 @export var firstBootDialogue  : String = "";
 @export var bootDialogueArray := [];
 
