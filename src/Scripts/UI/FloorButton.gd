@@ -106,10 +106,13 @@ func FindInWeightTable(label : String = "") -> int:
 	return -1;
 		
 func SwitchEventTab(tabIdx : int = 0):
+	
 	for i in typeTabs.tab_count:
 		eventScrollHolder.get_child(i).visible = false;
 		
-	print("Switch to tab ", tabIdx)
+	if tabIdx == -1:
+		return;
+		
 	eventScrollHolder.get_child(tabIdx).visible = true;
 
 func UpdateWeightTabs():	
@@ -188,7 +191,6 @@ func SaveResource() -> FloorResource:
 		floorRes.nodeTypeWeights[typeKey] = float(weightList.get_child(i).weightInput.text);
 		
 	for i in eventScrollHolder.get_child_count():
-		print(eventScrollHolder.get_child(i).eventType)
 		
 		var evScroll: EventScroll = eventScrollHolder.get_child(i);
 		floorRes.events[evScroll.eventType] = [];
@@ -252,21 +254,26 @@ func LoadResource(floorData : FloorResource):
 		typeTabs.remove_tab(0);
 	
 	var evTypeCount = weightList.get_child_count();
+	var firstTab = true;
 	for i in evTypeCount:
 		var key = floorData.nodeTypeWeights.keys()[i];
 		typeTabs.add_tab(key);
 				
 		var evScroll = EVENT_SCROLL_OBJ.instantiate();
-		eventScrollHolder.add_child(evScroll);
 		evScroll.eventType = key;
+		eventScrollHolder.add_child(evScroll);
+		
+		evScroll.visible = false;
+		if firstTab:
+			evScroll.visible = true;
+			firstTab = false;
+			
 		
 		var evCount = floorData.events[key].size();
 		for j in evCount:
 			evScroll.AddEventBox();
 			evScroll.eventList.get_child(j).LoadResource(floorData.events[key][j])
 	
-	
-	SwitchEventTab(0);	
 	return;
 	
 func SwitchTab(tabIdx : int = 0):	

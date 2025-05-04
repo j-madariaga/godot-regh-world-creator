@@ -34,7 +34,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 current_tab = 0
 tab_alignment = 2
-deselect_enabled = true
 tab_count = 4
 tab_0/title = "General Info"
 tab_1/title = "Map Generation"
