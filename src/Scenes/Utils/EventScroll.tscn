@@ -1,12 +1,12 @@
 [gd_scene load_steps=2 format=3 uid="uid://b0xm4255gttf5"]
 
-[ext_resource type="Script" uid="uid://dvv8dfahspulf" path="res://src/Scripts/UI/EventScroll.gd" id="1_14dsc"]
+[ext_resource type="Script" uid="uid://dvv8dfahspulf" path="res://src/Scripts/UI/EventScroll.gd" id="1_f8a01"]
 
 [node name="EventScrollHolder" type="VBoxContainer"]
-custom_minimum_size = Vector2(550, 350)
+custom_minimum_size = Vector2(1000, 350)
 offset_right = 550.0
 offset_bottom = 350.0
-script = ExtResource("1_14dsc")
+script = ExtResource("1_f8a01")
 
 [node name="Buttons" type="HBoxContainer" parent="."]
 layout_mode = 2

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://t6obwylht7rw"]
 
-[ext_resource type="Script" uid="uid://ce3s0xketsa4h" path="res://src/Scripts/UI/DialogueEntry.gd" id="1_twkl2"]
+[ext_resource type="Script" uid="uid://ce3s0xketsa4h" path="res://src/Scripts/UI/DialogueEntry.gd" id="1_i0w0k"]
 
 [node name="DialogueEntry" type="Panel"]
 custom_minimum_size = Vector2(480, 200)
@@ -9,7 +9,7 @@ anchor_right = 0.42
 anchor_bottom = 0.309
 offset_right = 0.159973
 offset_bottom = -0.23201
-script = ExtResource("1_twkl2")
+script = ExtResource("1_i0w0k")
 
 [node name="Organizer" type="VBoxContainer" parent="."]
 layout_mode = 0

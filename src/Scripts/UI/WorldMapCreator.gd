@@ -1,8 +1,8 @@
 extends Panel
 
-const PROJ_BUTTON_ARCH = preload("res://src/Scenes/ProjectButton.tscn")
+const PROJ_BUTTON_ARCH = preload("res://src/Scenes/Utils/ProjectButton.tscn")
 const FLOOR_BUTTON_ARCH = preload("res://src/Scenes/FloorButton.tscn")
-const DIAL_ENTRY_OBJ = preload("res://src/Scenes/DialogueEntry.tscn")
+const DIAL_ENTRY_OBJ = preload("res://src/Scenes/Utils/DialogueEntry.tscn")
 
 @onready var sideMenu = $SideMenu
 @onready var sideMenuButton = $SideMenuButton

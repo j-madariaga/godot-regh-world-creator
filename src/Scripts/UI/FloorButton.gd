@@ -1,9 +1,9 @@
 class_name FloorButton
 extends PanelContainer
 
-const WEIGHT_ENTRY_OBJ = preload("res://src/Scenes/WeightEntry.tscn");
-const EVENT_SCROLL_OBJ = preload("res://src/Scenes/EventScroll.tscn");
-const DIALOGUE_ENTRY_OBJ = preload("res://src/Scenes/DialogueEntry.tscn");
+const WEIGHT_ENTRY_OBJ = preload("res://src/Scenes/Utils/WeightEntry.tscn");
+const EVENT_SCROLL_OBJ = preload("res://src/Scenes/Utils/EventScroll.tscn");
+const DIALOGUE_ENTRY_OBJ = preload("res://src/Scenes/Utils/DialogueEntry.tscn");
 
 @onready var floorTag = $Organizer/HBoxContainer/FloorTag
 
@@ -17,6 +17,7 @@ const DIALOGUE_ENTRY_OBJ = preload("res://src/Scenes/DialogueEntry.tscn");
 @onready var floorName = $Organizer/GeneralInfoData/Right/Name/NameInput
 @onready var floorDesc = $Organizer/GeneralInfoData/Right/Description/DescInput
 @onready var floorImage = $Organizer/GeneralInfoData/Right/Splash/ImageInput
+@onready var musicTrackName = $Organizer/GeneralInfoData/Left/Music/MusicInput
 
 # Map generation
 @onready var minLayers = $Organizer/MapGenData/Right/Layers/MinInput
@@ -108,6 +109,7 @@ func SwitchEventTab(tabIdx : int = 0):
 	for i in typeTabs.tab_count:
 		eventScrollHolder.get_child(i).visible = false;
 		
+	print("Switch to tab ", tabIdx)
 	eventScrollHolder.get_child(tabIdx).visible = true;
 
 func UpdateWeightTabs():	
@@ -138,6 +140,7 @@ func SaveJSON() -> Dictionary:
 	floorData["info"]["name"] = floorName.text;
 	floorData["info"]["description"] = floorDesc.text;
 	floorData["info"]["splashImage"] = floorImage.text;
+	floorData["info"]["musicTrack"] = musicTrackName.text;
 	
 	floorData["mapGen"] = {};
 	floorData["mapGen"]["layers"] = [int(minLayers.text), int(maxLayers.text)];
@@ -166,6 +169,7 @@ func SaveResource() -> FloorResource:
 	floorRes.name = floorName.text;
 	floorRes.description = floorDesc.text;
 	floorRes.splashImageFilename = floorImage.text;
+	floorRes.floorMusicName = musicTrackName.text;
 	
 	floorRes.minLayers = int(minLayers.text);
 	floorRes.maxLayers = int(maxLayers.text);
@@ -176,12 +180,16 @@ func SaveResource() -> FloorResource:
 	
 	floorRes.additionalMapGenRules = mapGenRulesInput.text;
 	
+	
+	
 	floorRes.nodeTypeWeights = {}
 	for i in typeTabs.tab_count:
 		var typeKey = typeTabs.get_tab_title(i)
 		floorRes.nodeTypeWeights[typeKey] = float(weightList.get_child(i).weightInput.text);
 		
 	for i in eventScrollHolder.get_child_count():
+		print(eventScrollHolder.get_child(i).eventType)
+		
 		var evScroll: EventScroll = eventScrollHolder.get_child(i);
 		floorRes.events[evScroll.eventType] = [];
 		
@@ -213,6 +221,7 @@ func LoadResource(floorData : FloorResource):
 	floorName.text =  floorData.name;
 	floorDesc.text = floorData.description;
 	floorImage.text = floorData.splashImageFilename;
+	musicTrackName.text = floorData.floorMusicName;
 	
 	minLayers.text = str(floorData.minLayers);
 	maxLayers.text = str(floorData.maxLayers);
@@ -257,18 +266,7 @@ func LoadResource(floorData : FloorResource):
 			evScroll.eventList.get_child(j).LoadResource(floorData.events[key][j])
 	
 	
-	SwitchEventTab(0);
-	# Event pools
-	#for n in floorData.nodeTypeWeights.size():
-		#var key = floorData.events.keys()[i];
-		## Do not alter existing ones
-		#if FindInEventScroll(n) == -1:
-			#continue;
-			
-		#var weightObj = WEIGHT_ENTRY_OBJ.instantiate() as NodeWeightEntry;
-		#weightList.add_child(weightObj)
-		#weightObj.typeLabel.text = n;	
-	
+	SwitchEventTab(0);	
 	return;
 	
 func SwitchTab(tabIdx : int = 0):	

@@ -5,7 +5,7 @@ extends Resource
 @export var name : String = "";
 @export var description : String = "";
 @export var splashImageFilename : String= "";
-@export var floorEnterDialogues := []
+@export var floorMusicName : String = "";
 
 @export_group("Map Generation")
 @export var minLayers : int = 0;

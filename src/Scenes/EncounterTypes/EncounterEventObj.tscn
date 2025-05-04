@@ -1,0 +1,87 @@
+[gd_scene load_steps=2 format=3 uid="uid://cfcnos727lx0h"]
+
+[ext_resource type="Script" uid="uid://p1w1t2r18bm3" path="res://src/Scripts/UI/EventEncounterObj.gd" id="1_spi4o"]
+
+[node name="EventEncounterObj" type="PanelContainer"]
+custom_minimum_size = Vector2(500, 440)
+offset_right = 583.0
+offset_bottom = 430.0
+script = ExtResource("1_spi4o")
+
+[node name="MainScreen" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Name" type="HBoxContainer" parent="MainScreen"]
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="MainScreen/Name"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Event name"
+
+[node name="EventName" type="LineEdit" parent="MainScreen/Name"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Description" type="VBoxContainer" parent="MainScreen"]
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.76
+
+[node name="Label" type="Label" parent="MainScreen/Description"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Description"
+
+[node name="DescInput" type="TextEdit" parent="MainScreen/Description"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.18
+
+[node name="ButtonHolder" type="HBoxContainer" parent="MainScreen"]
+layout_mode = 2
+
+[node name="AddDialogueButton" type="Button" parent="MainScreen/ButtonHolder"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Add dialogue"
+
+[node name="OpenOptionsButton" type="Button" parent="MainScreen/ButtonHolder"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Show encounter options"
+
+[node name="DialogueLabel" type="Label" parent="MainScreen"]
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 3
+text = "Dialogue data"
+
+[node name="Scroll" type="ScrollContainer" parent="MainScreen"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 5.75
+
+[node name="DialogueList" type="HBoxContainer" parent="MainScreen/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="EligibleFromPool" type="CheckButton" parent="MainScreen"]
+layout_mode = 2
+text = "Eligible from event pool"
+
+[node name="OptionContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="CloseButton" type="Button" parent="OptionContainer"]
+layout_mode = 2
+text = "Close options"
+
+[connection signal="button_up" from="MainScreen/ButtonHolder/AddDialogueButton" to="." method="AddDialogue"]
+[connection signal="button_up" from="MainScreen/ButtonHolder/OpenOptionsButton" to="." method="OpenOptionsTab"]
+[connection signal="button_up" from="OptionContainer/CloseButton" to="." method="CloseOptionsTab"]
