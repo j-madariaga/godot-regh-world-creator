@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bkp08lr5stvi5" path="res://src/Scripts/UI/BossEncounterObj.gd" id="1_7bl22"]
 
 [node name="BossEventObj" type="PanelContainer"]
-custom_minimum_size = Vector2(500, 440)
+custom_minimum_size = Vector2(500, 500)
 offset_right = 583.0
 offset_bottom = 430.0
 script = ExtResource("1_7bl22")
@@ -53,6 +53,35 @@ size_flags_horizontal = 3
 text = "Enemy resource"
 
 [node name="EnemyName" type="LineEdit" parent="VBoxContainer/Resource"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BossTimer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/BossTimer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Boss timer"
+
+[node name="TimeInput" type="SpinBox" parent="VBoxContainer/BossTimer"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1000.0
+
+[node name="Background" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/Background"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Background"
+
+[node name="BackgroundName" type="LineEdit" parent="VBoxContainer/Background"]
 layout_mode = 2
 size_flags_horizontal = 3
 

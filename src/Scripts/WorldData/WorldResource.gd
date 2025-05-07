@@ -6,7 +6,6 @@ extends Resource
 @export var internalName : String = "";
 @export var description  : String =  "";
 @export var menuImageFilename : String = "";
-@export var firstBootDialogue  : String = "";
 @export var bootDialogueArray := [];
 
 @export_group("Floors")
@@ -28,4 +27,7 @@ extends Resource
 @export var difficultyAdditions : Dictionary = {}
 
 @export_group("Stat tracking")
-@export var stats : Dictionary = {};
+@export var stats : Dictionary = {
+	"runsStarted" : 0,
+	"runVictories" : 0,
+};

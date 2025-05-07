@@ -24,7 +24,6 @@ const OUTPUT_PATH = "res://output";
 @onready var internalName = $WorldInfoScreen/NameContainer/InternalNameInput
 @onready var descInput = $WorldInfoScreen/DescInput
 @onready var imageInput = $WorldInfoScreen/SplashImage/TextureName
-@onready var firstBootDialogueInput = $WorldInfoScreen/FirstBootDialogue/DialFileInput
 @onready var bootDialogueList = $WorldInfoScreen/BootDialogues/List
 
 @onready var floorList = $FloorInfoScreen/FloorScroll/FloorList
@@ -154,10 +153,9 @@ func SaveResource(textRes : bool = true):
 	worldRes.internalName = internalName.text;
 	worldRes.description = descInput.text;
 	worldRes.menuImageFilename = imageInput.text;
-	worldRes.firstBootDialogue = firstBootDialogueInput.text;
 	
 	for startDial : DialogueEntry in bootDialogueList.get_children():
-		worldRes.bootDialogueArray.append(startDial.SaveJSON());
+		worldRes.bootDialogueArray.append(startDial.SaveResource());
 	
 	for fl : FloorButton in floorList.get_children():
 		worldRes.floors.append(fl.SaveResource()); 
@@ -183,7 +181,6 @@ func SaveJSON():
 	worldData["worldInfo"]["internalName"] = internalName.text;
 	worldData["worldInfo"]["description"] = descInput.text;
 	worldData["worldInfo"]["image"] = imageInput.text;
-	worldData["worldInfo"]["firstBootDialogue"] = firstBootDialogueInput.text;
 	
 	worldData["bootDialogueArray"] = [];
 	for startDial : DialogueEntry in bootDialogueList.get_children():		
@@ -241,7 +238,6 @@ func LoadResource(fileName : String = ""):
 	internalName.text = worldRes.internalName;
 	descInput.text = worldRes.description;
 	imageInput.text = worldRes.menuImageFilename;
-	firstBootDialogueInput.text = worldRes.firstBootDialogue;
 	
 	print("Filename: ", worldRes.name)
 	
@@ -251,6 +247,7 @@ func LoadResource(fileName : String = ""):
 		dialEntry.dialName.text = dial.internalName;
 		dialEntry.triggerChance.text = str(int(dial.triggerChance));
 		dialEntry.autoSkip.button_pressed = dial.autoSkip;
+		dialEntry.firstBoot.button_pressed = dial.firstBootTrigger;
 		
 	for fl in worldRes.floors:
 		var floorButton = FLOOR_BUTTON_ARCH.instantiate();
@@ -289,7 +286,6 @@ func Clear():
 	internalName.text = "";
 	imageInput.text = "";
 	descInput.text = "";
-	firstBootDialogueInput.text = "";
 	
 	for ch in bootDialogueList.get_children():
 		ch.queue_free();

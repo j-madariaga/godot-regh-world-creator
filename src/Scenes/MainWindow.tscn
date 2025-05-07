@@ -200,12 +200,8 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
-text = "First boot dialogue"
+text = "New run dialogues"
 vertical_alignment = 1
-
-[node name="DialFileInput" type="LineEdit" parent="WorldInfoScreen/FirstBootDialogue"]
-layout_mode = 2
-size_flags_horizontal = 3
 
 [node name="AddBootDialogue" type="Button" parent="WorldInfoScreen"]
 layout_mode = 2

@@ -5,7 +5,7 @@
 
 [node name="FloorButton" type="PanelContainer"]
 self_modulate = Color(0, 1, 1, 1)
-custom_minimum_size = Vector2(700, 400)
+custom_minimum_size = Vector2(700, 700)
 anchors_preset = -1
 anchor_right = 0.608
 anchor_bottom = 0.463
@@ -41,6 +41,7 @@ tab_2/title = "Event Pool"
 tab_3/title = "Dialogues"
 
 [node name="GeneralInfoData" type="HBoxContainer" parent="Organizer"]
+visible = false
 layout_mode = 2
 offset_top = 35.0
 offset_right = 700.0
@@ -116,7 +117,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="MapGenData" type="HBoxContainer" parent="Organizer"]
-visible = false
 layout_mode = 2
 offset_left = 29.0
 offset_top = 36.0
@@ -138,13 +138,13 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Layers (min, max)"
 
-[node name="MinInput" type="LineEdit" parent="Organizer/MapGenData/Right/Layers"]
+[node name="MinInput" type="SpinBox" parent="Organizer/MapGenData/Right/Layers"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 size_flags_stretch_ratio = 0.2
 
-[node name="MaxInput" type="LineEdit" parent="Organizer/MapGenData/Right/Layers"]
+[node name="MaxInput" type="SpinBox" parent="Organizer/MapGenData/Right/Layers"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -159,13 +159,13 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Nodes per layer (min, max)"
 
-[node name="MinInput" type="LineEdit" parent="Organizer/MapGenData/Right/NPLayer"]
+[node name="MinInput" type="SpinBox" parent="Organizer/MapGenData/Right/NPLayer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 size_flags_stretch_ratio = 0.2
 
-[node name="MaxInput" type="LineEdit" parent="Organizer/MapGenData/Right/NPLayer"]
+[node name="MaxInput" type="SpinBox" parent="Organizer/MapGenData/Right/NPLayer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -180,13 +180,34 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Paths (min, max)"
 
-[node name="MinInput" type="LineEdit" parent="Organizer/MapGenData/Right/Paths"]
+[node name="MinInput" type="SpinBox" parent="Organizer/MapGenData/Right/Paths"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 size_flags_stretch_ratio = 0.2
 
-[node name="MaxInput" type="LineEdit" parent="Organizer/MapGenData/Right/Paths"]
+[node name="MaxInput" type="SpinBox" parent="Organizer/MapGenData/Right/Paths"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.2
+
+[node name="StartNodes" type="HBoxContainer" parent="Organizer/MapGenData/Right"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="Organizer/MapGenData/Right/StartNodes"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Start nodes (min, max)"
+
+[node name="MinInput" type="SpinBox" parent="Organizer/MapGenData/Right/StartNodes"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.2
+
+[node name="MaxInput" type="SpinBox" parent="Organizer/MapGenData/Right/StartNodes"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4

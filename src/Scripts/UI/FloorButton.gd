@@ -26,6 +26,8 @@ const DIALOGUE_ENTRY_OBJ = preload("res://src/Scenes/Utils/DialogueEntry.tscn");
 @onready var maxNodesPerLayer = $Organizer/MapGenData/Right/NPLayer/MaxInput
 @onready var minPaths = $Organizer/MapGenData/Right/Paths/MinInput
 @onready var maxPaths = $Organizer/MapGenData/Right/Paths/MaxInput
+@onready var minStartNodes = $Organizer/MapGenData/Right/StartNodes/MinInput
+@onready var maxStartNodes = $Organizer/MapGenData/Right/StartNodes/MaxInput
 @onready var weightList = $Organizer/MapGenData/Left/Weights/ScrollContainer/WeightList	
 @onready var mapGenRulesInput = $Organizer/MapGenData/Left/AdditionalRules/ScriptInput
 
@@ -174,17 +176,19 @@ func SaveResource() -> FloorResource:
 	floorRes.splashImageFilename = floorImage.text;
 	floorRes.floorMusicName = musicTrackName.text;
 	
-	floorRes.minLayers = int(minLayers.text);
-	floorRes.maxLayers = int(maxLayers.text);
-	floorRes.minNodesPerLayer = int(minNodesPerLayer.text);
-	floorRes.maxNodesPerLayer = int(maxNodesPerLayer.text);	
-	floorRes.minNodePaths = int(minPaths.text);
-	floorRes.maxNodePaths = int(maxPaths.text);
+	floorRes.minLayers = int(minLayers.value);
+	floorRes.maxLayers = int(maxLayers.value);
+	floorRes.minNodesPerLayer = int(minNodesPerLayer.value);
+	floorRes.maxNodesPerLayer = int(maxNodesPerLayer.value);	
+	floorRes.minNodePaths = int(minPaths.value);
+	floorRes.maxNodePaths = int(maxPaths.value);
+	floorRes.minStartNodes = int(minStartNodes.value)
+	floorRes.maxStartNodes = int(maxStartNodes.value)
 	
 	floorRes.additionalMapGenRules = mapGenRulesInput.text;
 	
 	
-	
+	# Event pools
 	floorRes.nodeTypeWeights = {}
 	for i in typeTabs.tab_count:
 		var typeKey = typeTabs.get_tab_title(i)
@@ -198,14 +202,9 @@ func SaveResource() -> FloorResource:
 		for ev : GameEncounterObj in evScroll.eventList.get_children():
 			floorRes.events[evScroll.eventType].append(ev.SaveResource());
 			
-			
-		#var evScroll = eventScrollHolder.get_child(i)
-		#var evCount = evScroll.get_child_count();
-		#for j in evCount:
-			#floorRes.events[typeKey].append(evScroll.get_child(i).SaveResource());
-		
-	
-	
+	# Floor init dialogues
+	for dial in dialogueList.get_children():
+		floorRes.bootDialogues.append(dial.SaveResource())
 	
 	return floorRes;
 
@@ -225,12 +224,14 @@ func LoadResource(floorData : FloorResource):
 	floorImage.text = floorData.splashImageFilename;
 	musicTrackName.text = floorData.floorMusicName;
 	
-	minLayers.text = str(floorData.minLayers);
-	maxLayers.text = str(floorData.maxLayers);
-	minNodesPerLayer.text = str(floorData.minNodesPerLayer);
-	maxNodesPerLayer.text = str(floorData.maxNodesPerLayer);
-	minPaths.text = str(floorData.minNodePaths);
-	maxPaths.text = str(floorData.maxNodePaths);
+	minLayers.value = (floorData.minLayers);
+	maxLayers.value = (floorData.maxLayers);
+	minNodesPerLayer.value = (floorData.minNodesPerLayer);
+	maxNodesPerLayer.value = (floorData.maxNodesPerLayer);
+	minPaths.value = (floorData.minNodePaths);
+	maxPaths.value = (floorData.maxNodePaths);
+	minStartNodes.value = (floorData.minStartNodes)
+	maxStartNodes.value = (floorData.maxStartNodes)
 	
 	mapGenRulesInput.text = floorData.additionalMapGenRules;
 	
@@ -253,6 +254,7 @@ func LoadResource(floorData : FloorResource):
 	for tb in typeTabs.tab_count:
 		typeTabs.remove_tab(0);
 	
+	# Event pools
 	var evTypeCount = weightList.get_child_count();
 	var firstTab = true;
 	for i in evTypeCount:
@@ -273,6 +275,14 @@ func LoadResource(floorData : FloorResource):
 		for j in evCount:
 			evScroll.AddEventBox();
 			evScroll.eventList.get_child(j).LoadResource(floorData.events[key][j])
+			
+	# Dialogue lists
+	for dial in floorData.bootDialogues:
+		var dialEntry = DIALOGUE_ENTRY_OBJ.instantiate();
+		dialogueList.add_child(dialEntry)
+		dialEntry.LoadResource(dial);
+		
+	
 	
 	return;
 	

@@ -56,11 +56,19 @@ text = "Enemy resource"
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="DialogueLabel" type="Label" parent="VBoxContainer"]
+[node name="Background" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 5
 size_flags_vertical = 3
-text = "Dialogue data"
+
+[node name="Label" type="Label" parent="VBoxContainer/Background"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Background"
+
+[node name="BackgroundName" type="LineEdit" parent="VBoxContainer/Background"]
+layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="Button" type="Button" parent="VBoxContainer"]
 layout_mode = 2
