@@ -6,6 +6,9 @@ extends Panel
 @onready var autoSkip = $Organizer/AutoSkip
 @onready var firstBoot = $Organizer/FirstBoot
 
+func OnClose():
+	self.queue_free();
+
 func Load(_data : Variant = null):
 	if _data == null:
 		return;

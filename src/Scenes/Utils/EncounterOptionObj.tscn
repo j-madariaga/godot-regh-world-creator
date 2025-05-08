@@ -1,0 +1,121 @@
+[gd_scene load_steps=2 format=3 uid="uid://dltaswy7hmofy"]
+
+[ext_resource type="Script" uid="uid://caxpdlrrh775x" path="res://src/Scripts/UI/OptionObj.gd" id="1_uay6i"]
+
+[node name="OptionObj" type="VBoxContainer"]
+custom_minimum_size = Vector2(400, 400)
+size_flags_horizontal = 3
+script = ExtResource("1_uay6i")
+
+[node name="Organizer" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Left" type="VBoxContainer" parent="Organizer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Name" type="HBoxContainer" parent="Organizer/Left"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="Organizer/Left/Name"]
+layout_mode = 2
+text = "Title"
+
+[node name="NameInput" type="LineEdit" parent="Organizer/Left/Name"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Image" type="HBoxContainer" parent="Organizer/Left"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="Organizer/Left/Image"]
+layout_mode = 2
+text = "Image"
+
+[node name="ImageInput" type="LineEdit" parent="Organizer/Left/Image"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="EndingIndex" type="HBoxContainer" parent="Organizer/Left"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="Organizer/Left/EndingIndex"]
+layout_mode = 2
+text = "Ending index"
+
+[node name="EndIdxInput" type="SpinBox" parent="Organizer/Left/EndingIndex"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Description" type="VBoxContainer" parent="Organizer/Left"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="Organizer/Left/Description"]
+layout_mode = 2
+text = "Description"
+
+[node name="DescInput" type="TextEdit" parent="Organizer/Left/Description"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Right" type="VBoxContainer" parent="Organizer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Effects" type="VBoxContainer" parent="Organizer/Right"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Organizer/Right/Effects"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Organizer/Right/Effects/HBoxContainer"]
+layout_mode = 2
+text = "Effects"
+
+[node name="AddEffect" type="Button" parent="Organizer/Right/Effects/HBoxContainer"]
+layout_mode = 2
+text = "Add+"
+
+[node name="Scroll" type="ScrollContainer" parent="Organizer/Right/Effects"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ActionList" type="VBoxContainer" parent="Organizer/Right/Effects/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Requirements" type="VBoxContainer" parent="Organizer/Right"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Organizer/Right/Requirements"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Organizer/Right/Requirements/HBoxContainer"]
+layout_mode = 2
+text = "Requirements"
+
+[node name="AddReq" type="Button" parent="Organizer/Right/Requirements/HBoxContainer"]
+layout_mode = 2
+text = "Add+"
+
+[node name="Scroll" type="ScrollContainer" parent="Organizer/Right/Requirements"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ReqList" type="VBoxContainer" parent="Organizer/Right/Requirements/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[connection signal="button_up" from="Organizer/Right/Effects/HBoxContainer/AddEffect" to="." method="AddEffect"]
+[connection signal="button_up" from="Organizer/Right/Requirements/HBoxContainer/AddReq" to="." method="AddRequirement"]

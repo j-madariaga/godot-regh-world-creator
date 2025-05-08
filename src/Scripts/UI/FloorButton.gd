@@ -39,7 +39,8 @@ const DIALOGUE_ENTRY_OBJ = preload("res://src/Scenes/Utils/DialogueEntry.tscn");
 # Floor dialogues
 @onready var dialogueList = $Organizer/DialogueData/Right/ScrollHolder/DialogueList
 
-
+func OnClose():
+	self.queue_free();
 
 func _ready():
 	SwitchTab(0);

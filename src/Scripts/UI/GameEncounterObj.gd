@@ -3,6 +3,8 @@ extends PanelContainer
 
 const DIAL_ENTRY_OBJ = preload("res://src/Scenes/Utils/DialogueEntry.tscn")
 
+func OnClose():
+	self.queue_free();
 
 func LoadJSON(_data := {}):
 	return;

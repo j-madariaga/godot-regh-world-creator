@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://d10g8uok2n4o3"]
+
+[ext_resource type="Script" uid="uid://0k8su85dq2b4" path="res://src/Scripts/UI/DictEntry.gd" id="1_i1lwq"]
+
+[node name="Value" type="CodeEdit"]
+custom_minimum_size = Vector2(0, 200)
+offset_top = 42.0
+offset_right = 402.0
+offset_bottom = 242.0
+size_flags_horizontal = 3
+placeholder_text = "Value"
+script = ExtResource("1_i1lwq")

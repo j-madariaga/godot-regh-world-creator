@@ -3,12 +3,13 @@
 [ext_resource type="Script" uid="uid://p1w1t2r18bm3" path="res://src/Scripts/UI/EventEncounterObj.gd" id="1_spi4o"]
 
 [node name="EventEncounterObj" type="PanelContainer"]
-custom_minimum_size = Vector2(500, 440)
+custom_minimum_size = Vector2(700, 440)
 offset_right = 583.0
 offset_bottom = 430.0
 script = ExtResource("1_spi4o")
 
 [node name="MainScreen" type="VBoxContainer" parent="."]
+visible = false
 layout_mode = 2
 
 [node name="Name" type="HBoxContainer" parent="MainScreen"]
@@ -24,6 +25,13 @@ text = "Event name"
 [node name="EventName" type="LineEdit" parent="MainScreen/Name"]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="CloseButton" type="Button" parent="MainScreen/Name"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.3
+text = "X
+"
 
 [node name="Description" type="VBoxContainer" parent="MainScreen"]
 layout_mode = 2
@@ -82,6 +90,26 @@ layout_mode = 2
 layout_mode = 2
 text = "Close options"
 
+[node name="AddOptionButton" type="Button" parent="OptionContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Add Option"
+
+[node name="OptLabel" type="Label" parent="OptionContainer"]
+layout_mode = 2
+text = "Option List"
+
+[node name="OptScroll" type="ScrollContainer" parent="OptionContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="OptList" type="HBoxContainer" parent="OptionContainer/OptScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[connection signal="button_up" from="MainScreen/Name/CloseButton" to="." method="OnClose"]
 [connection signal="button_up" from="MainScreen/ButtonHolder/AddDialogueButton" to="." method="AddDialogue"]
 [connection signal="button_up" from="MainScreen/ButtonHolder/OpenOptionsButton" to="." method="OpenOptionsTab"]
 [connection signal="button_up" from="OptionContainer/CloseButton" to="." method="CloseOptionsTab"]
+[connection signal="button_up" from="OptionContainer/AddOptionButton" to="." method="CreateOptionHolder"]

@@ -25,6 +25,13 @@ text = "Event name"
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="CloseButton" type="Button" parent="VBoxContainer/Name"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.3
+text = "X
+"
+
 [node name="Description" type="VBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 5
@@ -110,4 +117,5 @@ size_flags_vertical = 3
 layout_mode = 2
 text = "Eligible from event pool"
 
+[connection signal="button_up" from="VBoxContainer/Name/CloseButton" to="." method="OnClose"]
 [connection signal="button_up" from="VBoxContainer/Button" to="." method="AddDialogue"]

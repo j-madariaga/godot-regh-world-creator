@@ -16,6 +16,15 @@ script = ExtResource("1_axj3p")
 [node name="Organizer" type="Control" parent="."]
 layout_mode = 2
 
+[node name="CloseButton" type="Button" parent="Organizer"]
+layout_mode = 2
+offset_left = 868.0
+offset_right = 934.0
+offset_bottom = 61.0
+size_flags_horizontal = 4
+text = "X
+"
+
 [node name="HBoxContainer" type="HBoxContainer" parent="Organizer"]
 layout_mode = 2
 offset_right = 802.0
@@ -353,6 +362,7 @@ size_flags_vertical = 3
 [node name="DialogueList" type="HBoxContainer" parent="Organizer/DialogueData/Right/ScrollHolder"]
 layout_mode = 2
 
+[connection signal="button_up" from="Organizer/CloseButton" to="." method="OnClose"]
 [connection signal="tab_changed" from="Organizer/HBoxContainer/TabBar" to="." method="SwitchTab"]
 [connection signal="button_up" from="Organizer/EventData/Right/EventTypes/AddType" to="." method="AddNodeType"]
 [connection signal="tab_changed" from="Organizer/EventData/Right/TypeBar" to="." method="SwitchEventTab"]
