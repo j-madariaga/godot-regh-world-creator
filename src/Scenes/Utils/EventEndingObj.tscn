@@ -1,0 +1,45 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqq2cok8ksss"]
+
+[ext_resource type="Script" uid="uid://1ngqb7b2r00t" path="res://src/Scripts/UI/EventEndingObj.gd" id="1_v1a58"]
+
+[node name="EventEndingObj" type="VBoxContainer"]
+custom_minimum_size = Vector2(400, 200)
+offset_right = 400.0
+offset_bottom = 277.0
+size_flags_horizontal = 8
+script = ExtResource("1_v1a58")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Ending text"
+
+[node name="ScreenTextInput" type="TextEdit" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+wrap_mode = 1
+autowrap_mode = 2
+
+[node name="Dialogues" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Dialogues"]
+layout_mode = 2
+text = "End dialogues"
+
+[node name="Button" type="Button" parent="Dialogues"]
+layout_mode = 2
+text = "New"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Scroll" type="ScrollContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DialogueList" type="HBoxContainer" parent="VBoxContainer/Scroll"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[connection signal="button_up" from="Dialogues/Button" to="." method="AddEndDialogue"]

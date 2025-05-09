@@ -4,112 +4,147 @@
 
 [node name="EventEncounterObj" type="PanelContainer"]
 custom_minimum_size = Vector2(700, 440)
-offset_right = 583.0
-offset_bottom = 430.0
+offset_right = 700.0
+offset_bottom = 440.0
 script = ExtResource("1_spi4o")
 
-[node name="MainScreen" type="VBoxContainer" parent="."]
-visible = false
+[node name="Organizer" type="VBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="Name" type="HBoxContainer" parent="MainScreen"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Organizer"]
+layout_mode = 2
+
+[node name="TabBar" type="TabBar" parent="Organizer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+current_tab = 0
+tab_count = 3
+tab_0/title = "General"
+tab_1/title = "Options"
+tab_2/title = "Endings"
+
+[node name="CloseButton" type="Button" parent="Organizer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+text = "X
+"
+
+[node name="MainScreen" type="VBoxContainer" parent="Organizer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Name" type="HBoxContainer" parent="Organizer/MainScreen"]
 layout_mode = 2
 size_flags_horizontal = 5
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="MainScreen/Name"]
+[node name="Label" type="Label" parent="Organizer/MainScreen/Name"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Event name"
 
-[node name="EventName" type="LineEdit" parent="MainScreen/Name"]
+[node name="EventName" type="LineEdit" parent="Organizer/MainScreen/Name"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="CloseButton" type="Button" parent="MainScreen/Name"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.3
-text = "X
-"
-
-[node name="Description" type="VBoxContainer" parent="MainScreen"]
+[node name="Description" type="VBoxContainer" parent="Organizer/MainScreen"]
 layout_mode = 2
 size_flags_horizontal = 5
 size_flags_vertical = 3
-size_flags_stretch_ratio = 2.76
+size_flags_stretch_ratio = 3.64
 
-[node name="Label" type="Label" parent="MainScreen/Description"]
+[node name="Label" type="Label" parent="Organizer/MainScreen/Description"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Description"
 
-[node name="DescInput" type="TextEdit" parent="MainScreen/Description"]
+[node name="DescInput" type="TextEdit" parent="Organizer/MainScreen/Description"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.18
 
-[node name="ButtonHolder" type="HBoxContainer" parent="MainScreen"]
+[node name="ButtonHolder" type="HBoxContainer" parent="Organizer/MainScreen"]
 layout_mode = 2
+size_flags_vertical = 3
 
-[node name="AddDialogueButton" type="Button" parent="MainScreen/ButtonHolder"]
+[node name="AddDialogueButton" type="Button" parent="Organizer/MainScreen/ButtonHolder"]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "Add dialogue"
 
-[node name="OpenOptionsButton" type="Button" parent="MainScreen/ButtonHolder"]
+[node name="OpenOptionsButton" type="Button" parent="Organizer/MainScreen/ButtonHolder"]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "Show encounter options"
 
-[node name="DialogueLabel" type="Label" parent="MainScreen"]
+[node name="DialogueLabel" type="Label" parent="Organizer/MainScreen"]
 layout_mode = 2
 size_flags_horizontal = 5
 size_flags_vertical = 3
 text = "Dialogue data"
 
-[node name="Scroll" type="ScrollContainer" parent="MainScreen"]
+[node name="Scroll" type="ScrollContainer" parent="Organizer/MainScreen"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 5.75
 
-[node name="DialogueList" type="HBoxContainer" parent="MainScreen/Scroll"]
+[node name="DialogueList" type="HBoxContainer" parent="Organizer/MainScreen/Scroll"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="EligibleFromPool" type="CheckButton" parent="MainScreen"]
+[node name="EligibleFromPool" type="CheckButton" parent="Organizer/MainScreen"]
 layout_mode = 2
 text = "Eligible from event pool"
 
-[node name="OptionContainer" type="VBoxContainer" parent="."]
+[node name="OptionContainer" type="VBoxContainer" parent="Organizer"]
+visible = false
 layout_mode = 2
+size_flags_vertical = 3
 
-[node name="CloseButton" type="Button" parent="OptionContainer"]
-layout_mode = 2
-text = "Close options"
-
-[node name="AddOptionButton" type="Button" parent="OptionContainer"]
+[node name="AddOptionButton" type="Button" parent="Organizer/OptionContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "Add Option"
 
-[node name="OptLabel" type="Label" parent="OptionContainer"]
+[node name="OptLabel" type="Label" parent="Organizer/OptionContainer"]
 layout_mode = 2
 text = "Option List"
 
-[node name="OptScroll" type="ScrollContainer" parent="OptionContainer"]
+[node name="OptScroll" type="ScrollContainer" parent="Organizer/OptionContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="OptList" type="HBoxContainer" parent="OptionContainer/OptScroll"]
+[node name="OptList" type="HBoxContainer" parent="Organizer/OptionContainer/OptScroll"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[connection signal="button_up" from="MainScreen/Name/CloseButton" to="." method="OnClose"]
-[connection signal="button_up" from="MainScreen/ButtonHolder/AddDialogueButton" to="." method="AddDialogue"]
-[connection signal="button_up" from="MainScreen/ButtonHolder/OpenOptionsButton" to="." method="OpenOptionsTab"]
-[connection signal="button_up" from="OptionContainer/CloseButton" to="." method="CloseOptionsTab"]
-[connection signal="button_up" from="OptionContainer/AddOptionButton" to="." method="CreateOptionHolder"]
+[node name="EndingScreen" type="VBoxContainer" parent="Organizer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="Organizer/EndingScreen"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Add ending"
+
+[node name="Scroll" type="ScrollContainer" parent="Organizer/EndingScreen"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Endings" type="HBoxContainer" parent="Organizer/EndingScreen/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[connection signal="tab_changed" from="Organizer/HBoxContainer/TabBar" to="." method="SwitchTab"]
+[connection signal="button_up" from="Organizer/HBoxContainer/CloseButton" to="." method="OnClose"]
+[connection signal="button_up" from="Organizer/MainScreen/ButtonHolder/AddDialogueButton" to="." method="AddDialogue"]
+[connection signal="button_up" from="Organizer/MainScreen/ButtonHolder/OpenOptionsButton" to="." method="OpenOptionsTab"]
+[connection signal="button_up" from="Organizer/OptionContainer/AddOptionButton" to="." method="CreateOptionHolder"]
+[connection signal="button_up" from="Organizer/EndingScreen/Button" to="." method="AddEnding"]

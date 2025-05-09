@@ -3,6 +3,7 @@ extends VBoxContainer
 
 const DICT_ENTRY_OBJ = preload("res://src/Scenes/Utils/DictEntry.tscn");
 
+
 @onready var nameInput = $Organizer/Left/Name/NameInput
 @onready var descInput = $Organizer/Left/Description/DescInput
 @onready var imageInput = $Organizer/Left/Image/ImageInput

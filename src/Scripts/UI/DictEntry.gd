@@ -4,7 +4,6 @@ extends CodeEdit
 func SaveResource(list := []):
 	var entry = {}
 	entry = str_to_var(text)
-	print(entry)
 	
 	list.append(entry)
 	return;
