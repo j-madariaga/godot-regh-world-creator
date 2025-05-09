@@ -123,6 +123,7 @@ layout_mode = 2
 text = "Close menu"
 
 [node name="WorldInfoScreen" type="VBoxContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.465
@@ -386,7 +387,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="EndingsScreen" type="VBoxContainer" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -405,6 +405,18 @@ text = "Endings"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="AddEnding" type="Button" parent="EndingsScreen"]
+layout_mode = 2
+text = "New Ending +"
+
+[node name="Scroll" type="ScrollContainer" parent="EndingsScreen"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="EndingList" type="HBoxContainer" parent="EndingsScreen/Scroll"]
+layout_mode = 2
+size_flags_vertical = 3
+
 [connection signal="button_up" from="SideMenuButton" to="." method="ToggleSideMenu" binds= [true]]
 [connection signal="button_up" from="SideMenu/VBoxContainer/Separator5/New world" to="." method="NewWorld"]
 [connection signal="button_up" from="SideMenu/VBoxContainer/FileSave/SaveButton" to="." method="Save"]
@@ -418,3 +430,4 @@ vertical_alignment = 1
 [connection signal="button_up" from="WorldInfoScreen/AddBootDialogue" to="." method="AddBootDialogueEntry"]
 [connection signal="button_up" from="FloorInfoScreen/HBoxContainer/AddFloorButton" to="." method="AddFloorButton"]
 [connection signal="button_up" from="SpecialFloorScreen/HBoxContainer/AddFloorButton" to="." method="AddSpecialFloorButton"]
+[connection signal="button_up" from="EndingsScreen/AddEnding" to="." method="AddWorldEnding"]

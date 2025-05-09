@@ -9,9 +9,17 @@ offset_bottom = 277.0
 size_flags_horizontal = 8
 script = ExtResource("1_v1a58")
 
-[node name="Label" type="Label" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
 layout_mode = 2
 text = "Ending text"
+
+[node name="Button" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "  X  "
 
 [node name="ScreenTextInput" type="TextEdit" parent="."]
 layout_mode = 2
@@ -42,4 +50,5 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_vertical = 3
 
+[connection signal="button_up" from="HBoxContainer/Button" to="." method="OnClose"]
 [connection signal="button_up" from="Dialogues/Button" to="." method="AddEndDialogue"]

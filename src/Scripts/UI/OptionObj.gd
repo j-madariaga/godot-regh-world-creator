@@ -12,6 +12,9 @@ const DICT_ENTRY_OBJ = preload("res://src/Scenes/Utils/DictEntry.tscn");
 @onready var reqList = $Organizer/Right/Requirements/Scroll/ReqList
 @onready var actionList = $Organizer/Right/Effects/Scroll/ActionList
 
+func OnClose():
+	self.queue_free();
+
 
 func AddEffect():
 	var entry = DICT_ENTRY_OBJ.instantiate();

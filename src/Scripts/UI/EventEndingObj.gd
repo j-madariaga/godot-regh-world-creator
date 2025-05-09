@@ -6,6 +6,9 @@ const DIALOGUE_ENTRY_OBJ = preload("res://src/Scenes/Utils/DialogueEntry.tscn")
 @onready var endingInput = $ScreenTextInput
 @onready var endDialogues = $VBoxContainer/Scroll/DialogueList
 
+func OnClose():
+	self.queue_free();
+
 func AddEndDialogue():
 	var dial = DIALOGUE_ENTRY_OBJ.instantiate();
 	endDialogues.add_child(dial);

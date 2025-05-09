@@ -83,6 +83,11 @@ text = "Effects"
 layout_mode = 2
 text = "Add+"
 
+[node name="Button" type="Button" parent="Organizer/Right/Effects/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "  X  "
+
 [node name="Scroll" type="ScrollContainer" parent="Organizer/Right/Effects"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -118,4 +123,5 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [connection signal="button_up" from="Organizer/Right/Effects/HBoxContainer/AddEffect" to="." method="AddEffect"]
+[connection signal="button_up" from="Organizer/Right/Effects/HBoxContainer/Button" to="." method="OnClose"]
 [connection signal="button_up" from="Organizer/Right/Requirements/HBoxContainer/AddReq" to="." method="AddRequirement"]

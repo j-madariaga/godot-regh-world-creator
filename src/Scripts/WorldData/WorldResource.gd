@@ -15,7 +15,7 @@ extends Resource
 @export var specFloors : Array[FloorResource] = []
 
 @export_group("Endings")
-@export var endingDialogueArray := [];
+@export var endings : Array[WorldEndingResource] = [];
 
 @export_group("Gameplay variables")
 @export var characters : Array[String] = [];

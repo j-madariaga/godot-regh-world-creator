@@ -1,0 +1,103 @@
+[gd_scene load_steps=2 format=3 uid="uid://drybrme5o6x3o"]
+
+[ext_resource type="Script" uid="uid://f4r5iwv4wipt" path="res://src/Scripts/UI/WorldEndingObj.gd" id="1_d0sbc"]
+
+[node name="WorldEndingObj" type="PanelContainer"]
+custom_minimum_size = Vector2(450, 400)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1150.0
+offset_bottom = -500.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+script = ExtResource("1_d0sbc")
+
+[node name="Organizer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Title" type="HBoxContainer" parent="Organizer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Organizer/Title"]
+layout_mode = 2
+size_flags_horizontal = 11
+text = "Title  "
+
+[node name="TitleInput" type="LineEdit" parent="Organizer/Title"]
+layout_mode = 2
+size_flags_horizontal = 11
+size_flags_stretch_ratio = 20.0
+
+[node name="Separator" type="Label" parent="Organizer/Title"]
+layout_mode = 2
+size_flags_horizontal = 11
+size_flags_stretch_ratio = 4.2
+
+[node name="Button" type="Button" parent="Organizer/Title"]
+layout_mode = 2
+size_flags_horizontal = 11
+text = "  X  "
+
+[node name="BackgroundImage" type="HBoxContainer" parent="Organizer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Organizer/BackgroundImage"]
+layout_mode = 2
+size_flags_horizontal = 11
+text = "Background"
+
+[node name="ImageInput" type="LineEdit" parent="Organizer/BackgroundImage"]
+layout_mode = 2
+size_flags_horizontal = 11
+size_flags_stretch_ratio = 5.25
+
+[node name="Description" type="VBoxContainer" parent="Organizer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.75
+
+[node name="Label" type="Label" parent="Organizer/Description"]
+layout_mode = 2
+size_flags_horizontal = 11
+text = "Description"
+
+[node name="DescInput" type="TextEdit" parent="Organizer/Description"]
+layout_mode = 2
+size_flags_horizontal = 11
+size_flags_vertical = 3
+size_flags_stretch_ratio = 5.25
+wrap_mode = 1
+autowrap_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="Organizer"]
+layout_mode = 2
+
+[node name="Dialogues" type="VBoxContainer" parent="Organizer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Organizer/Dialogues"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Organizer/Dialogues/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 11
+text = "Dialogues"
+
+[node name="Button" type="Button" parent="Organizer/Dialogues/HBoxContainer"]
+layout_mode = 2
+text = "Add"
+
+[node name="Scroll" type="ScrollContainer" parent="Organizer/Dialogues"]
+layout_mode = 2
+size_flags_horizontal = 11
+size_flags_vertical = 3
+size_flags_stretch_ratio = 5.25
+
+[node name="DialogueList" type="HBoxContainer" parent="Organizer/Dialogues/Scroll"]
+layout_mode = 2
+
+[connection signal="button_up" from="Organizer/Title/Button" to="." method="OnClose"]
+[connection signal="button_up" from="Organizer/Dialogues/HBoxContainer/Button" to="." method="AddDialogue"]

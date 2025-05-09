@@ -3,6 +3,7 @@ extends Panel
 const PROJ_BUTTON_ARCH = preload("res://src/Scenes/Utils/ProjectButton.tscn")
 const FLOOR_BUTTON_ARCH = preload("res://src/Scenes/FloorButton.tscn")
 const DIAL_ENTRY_OBJ = preload("res://src/Scenes/Utils/DialogueEntry.tscn")
+const WORLD_ENDING_OBJ = preload("res://src/Scenes/Utils/WorldEndingObj.tscn")
 
 @onready var sideMenu = $SideMenu
 @onready var sideMenuButton = $SideMenuButton
@@ -29,6 +30,8 @@ const OUTPUT_PATH = "res://output";
 @onready var floorList = $FloorInfoScreen/FloorScroll/FloorList
 @onready var specialFloorList = $SideMenu/VBoxContainer/FloorInfo/SpecialFloors
 
+@onready var endingList = $EndingsScreen/Scroll/EndingList
+
 signal onProjectLoad(String);
 
 
@@ -49,10 +52,15 @@ func AddSpecialFloorButton():
 	var button = FLOOR_BUTTON_ARCH.instantiate();
 	specialFloorList.add_child(button)
 
-
 func AddBootDialogueEntry():
 	var dial := DIAL_ENTRY_OBJ.instantiate();
 	bootDialogueList.add_child(dial)
+
+func AddWorldEnding():
+	var end = WORLD_ENDING_OBJ.instantiate();
+	endingList.add_child(end);
+	
+	return;
 
 # ---- SIDE MENU --------
 func ToggleSideMenu(v : bool):
@@ -159,6 +167,12 @@ func SaveResource(textRes : bool = true):
 	
 	for fl : FloorButton in floorList.get_children():
 		worldRes.floors.append(fl.SaveResource()); 
+		
+	for specFl : FloorButton in specialFloorList.get_children():
+		worldRes.specFloors.append(specFl.SaveResource()); 
+		
+	for end : WorldEndingObj in endingList.get_children():
+		worldRes.endings.append(end.SaveResource())
 	
 	var filePath = OUTPUT_PATH + "/" + inputFilename.text;
 	if textRes:
@@ -238,9 +252,7 @@ func LoadResource(fileName : String = ""):
 	internalName.text = worldRes.internalName;
 	descInput.text = worldRes.description;
 	imageInput.text = worldRes.menuImageFilename;
-	
-	print("Filename: ", worldRes.name)
-	
+
 	for dial in worldRes.bootDialogueArray:
 		var dialEntry := DIAL_ENTRY_OBJ.instantiate();
 		bootDialogueList.add_child(dialEntry);
@@ -258,6 +270,11 @@ func LoadResource(fileName : String = ""):
 		var floorButton = FLOOR_BUTTON_ARCH.instantiate();
 		specialFloorList.add_child(floorButton);
 		floorButton.Load(fl);
+		
+	for end in worldRes.endings:
+		var endObj = WORLD_ENDING_OBJ.instantiate();
+		endingList.add_child(endObj);
+		endObj.LoadResource(end)
 	
 	return;
 
@@ -295,6 +312,9 @@ func Clear():
 		
 	for specFl in specialFloorList.get_children():
 		specFl.queue_free();
+		
+	for end in endingList.get_children():
+		end.queue_free()
 	
 	
 func NewWorld():
