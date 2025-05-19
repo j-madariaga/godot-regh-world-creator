@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxjg84hqvrghv"]
+
+[ext_resource type="Script" uid="uid://c4qohm0scvype" path="res://src/Scripts/UI/GameplayVarEntry.gd" id="1_pi5gr"]
+
+[node name="GameplayEntry" type="HBoxContainer"]
+script = ExtResource("1_pi5gr")
+
+[node name="VarNameInput" type="LineEdit" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VarType" type="OptionButton" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+selected = 0
+item_count = 3
+popup/item_0/text = "int"
+popup/item_0/id = 0
+popup/item_1/text = "float"
+popup/item_1/id = 1
+popup/item_2/text = "String"
+popup/item_2/id = 2
+
+[node name="InitialValue" type="LineEdit" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3

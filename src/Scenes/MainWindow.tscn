@@ -302,7 +302,6 @@ size_flags_vertical = 3
 layout_mode = 2
 
 [node name="GameplayScreen" type="VBoxContainer" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -323,6 +322,7 @@ vertical_alignment = 1
 
 [node name="Hold" type="HBoxContainer" parent="GameplayScreen"]
 layout_mode = 2
+size_flags_vertical = 3
 
 [node name="Characters" type="VBoxContainer" parent="GameplayScreen/Hold"]
 layout_mode = 2
@@ -330,7 +330,7 @@ size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="GameplayScreen/Hold/Characters"]
 layout_mode = 2
-text = "Characters"
+text = "Character pool"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -343,12 +343,22 @@ layout_mode = 2
 [node name="Rules" type="VBoxContainer" parent="GameplayScreen/Hold"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.06
 
 [node name="Label" type="Label" parent="GameplayScreen/Hold/Rules"]
 layout_mode = 2
-text = "Rules"
+text = "Gameplay variables"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Button" type="Button" parent="GameplayScreen/Hold/Rules"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Add new variable"
+
+[node name="GameplayVarList" type="VBoxContainer" parent="GameplayScreen/Hold/Rules"]
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="Artifacts" type="VBoxContainer" parent="GameplayScreen/Hold"]
 layout_mode = 2
@@ -356,7 +366,7 @@ size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="GameplayScreen/Hold/Artifacts"]
 layout_mode = 2
-text = "Artifacts"
+text = "Artifact pool"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -387,6 +397,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="EndingsScreen" type="VBoxContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -430,4 +441,5 @@ size_flags_vertical = 3
 [connection signal="button_up" from="WorldInfoScreen/AddBootDialogue" to="." method="AddBootDialogueEntry"]
 [connection signal="button_up" from="FloorInfoScreen/HBoxContainer/AddFloorButton" to="." method="AddFloorButton"]
 [connection signal="button_up" from="SpecialFloorScreen/HBoxContainer/AddFloorButton" to="." method="AddSpecialFloorButton"]
+[connection signal="button_up" from="GameplayScreen/Hold/Rules/Button" to="." method="AddGameplayVariable"]
 [connection signal="button_up" from="EndingsScreen/AddEnding" to="." method="AddWorldEnding"]

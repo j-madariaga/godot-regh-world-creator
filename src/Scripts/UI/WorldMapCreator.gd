@@ -4,6 +4,7 @@ const PROJ_BUTTON_ARCH = preload("res://src/Scenes/Utils/ProjectButton.tscn")
 const FLOOR_BUTTON_ARCH = preload("res://src/Scenes/FloorButton.tscn")
 const DIAL_ENTRY_OBJ = preload("res://src/Scenes/Utils/DialogueEntry.tscn")
 const WORLD_ENDING_OBJ = preload("res://src/Scenes/Utils/WorldEndingObj.tscn")
+const GAME_VAR_OBJ = preload("res://src/Scenes/Utils/GameplayVarEntry.tscn")
 
 @onready var sideMenu = $SideMenu
 @onready var sideMenuButton = $SideMenuButton
@@ -29,6 +30,8 @@ const OUTPUT_PATH = "res://output";
 
 @onready var floorList = $FloorInfoScreen/FloorScroll/FloorList
 @onready var specialFloorList = $SideMenu/VBoxContainer/FloorInfo/SpecialFloors
+
+@onready var gameplayVarList = $GameplayScreen/Hold/Rules/GameplayVarList
 
 @onready var endingList = $EndingsScreen/Scroll/EndingList
 
@@ -171,6 +174,13 @@ func SaveResource(textRes : bool = true):
 	for specFl : FloorButton in specialFloorList.get_children():
 		worldRes.specFloors.append(specFl.SaveResource()); 
 		
+	worldRes.gameplayVariables.clear();
+	for v in gameplayVarList.get_children():
+		var entry = v.Save()		
+		worldRes.gameplayVariables[entry["entryName"]] = entry["entryValue"];
+		
+		
+		
 	for end : WorldEndingObj in endingList.get_children():
 		worldRes.endings.append(end.SaveResource())
 	
@@ -229,7 +239,6 @@ func Save():
 	LoadSavedProjects();
 	return;
 
-
 func LoadJSON(fileName : String = ""):
 	var filePath = OUTPUT_PATH + "/" + fileName;
 	var file = FileAccess.open(filePath, FileAccess.READ);
@@ -270,6 +279,15 @@ func LoadResource(fileName : String = ""):
 		var floorButton = FLOOR_BUTTON_ARCH.instantiate();
 		specialFloorList.add_child(floorButton);
 		floorButton.Load(fl);
+		
+		
+	for v in worldRes.gameplayVariables:
+		var vObj = GAME_VAR_OBJ.instantiate();
+		gameplayVarList.add_child(vObj);
+		
+		vObj.Load(v, worldRes.gameplayVariables[v]);
+		
+	
 		
 	for end in worldRes.endings:
 		var endObj = WORLD_ENDING_OBJ.instantiate();
@@ -313,8 +331,18 @@ func Clear():
 	for specFl in specialFloorList.get_children():
 		specFl.queue_free();
 		
+	for v in gameplayVarList.get_children():
+		v.queue_free();
+		
 	for end in endingList.get_children():
 		end.queue_free()
+	
+func AddGameplayVariable(data := {}):
+	var varObj = GAME_VAR_OBJ.instantiate();
+	gameplayVarList.add_child(varObj)
+	
+	if data != {}:
+		varObj.Load(data)
 	
 	
 func NewWorld():

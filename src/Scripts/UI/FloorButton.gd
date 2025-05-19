@@ -108,7 +108,9 @@ func FindInWeightTable(label : String = "") -> int:
 		idx += 1;
 	return -1;
 		
-func SwitchEventTab(tabIdx : int = 0):
+func SwitchEventTab(tabIdx : int = -1):
+	if typeTabs.tab_count <= 1:
+		return;
 	
 	for i in typeTabs.tab_count:
 		eventScrollHolder.get_child(i).visible = false;
@@ -127,8 +129,8 @@ func UpdateWeightTabs():
 	for n in typeNames:
 		
 		# Do not alter existing ones
-		if FindInWeightTable(n) == -1:
-			continue;
+		if FindInWeightTable(n) != -1:
+			continue
 			
 		var weightObj = WEIGHT_ENTRY_OBJ.instantiate() as NodeWeightEntry;
 		weightList.add_child(weightObj)
@@ -192,8 +194,9 @@ func SaveResource() -> FloorResource:
 	# Event pools
 	floorRes.nodeTypeWeights = {}
 	for i in typeTabs.tab_count:
+		var weightChild = weightList.get_child(i) as NodeWeightEntry
 		var typeKey = typeTabs.get_tab_title(i)
-		floorRes.nodeTypeWeights[typeKey] = float(weightList.get_child(i).weightInput.text);
+		floorRes.nodeTypeWeights[typeKey] = float(weightChild.weightInput.text);
 		
 	for i in eventScrollHolder.get_child_count():
 		
@@ -237,29 +240,35 @@ func LoadResource(floorData : FloorResource):
 	mapGenRulesInput.text = floorData.additionalMapGenRules;
 	
 	# Node weight table
-	for i in floorData.nodeTypeWeights.size():
-		var key = floorData.nodeTypeWeights.keys()[i];
-		var idx = FindInWeightTable(key);
-		if idx != -1:
-			weightList.get_child(idx).weightInput.text = str(floorData.nodeTypeWeights[key]);
-			continue;
-			
-		var weightEntry = WEIGHT_ENTRY_OBJ.instantiate();
-		weightList.add_child(weightEntry);
-		weightEntry.typeLabel.text = key
-		weightEntry.weightInput.text = str(floorData.nodeTypeWeights[key]);
-	
 	for ch in eventScrollHolder.get_children():
 		ch.queue_free()
 		
 	for tb in typeTabs.tab_count:
 		typeTabs.remove_tab(0);
+		
+	for w in weightList.get_children():
+		w.free()
+	
+	for i in floorData.nodeTypeWeights.size():
+		var key = floorData.nodeTypeWeights.keys()[i];
+		var idx = FindInWeightTable(key);
+		if idx != -1:			
+			weightList.get_child(idx).weightInput.text = str(floorData.nodeTypeWeights[key]);
+			continue;
+
+		var weightEntry = WEIGHT_ENTRY_OBJ.instantiate();
+		weightList.add_child(weightEntry);
+		weightEntry.typeLabel.text = key
+		weightEntry.weightInput.text = str(floorData.nodeTypeWeights[key]);
 	
 	# Event pools
-	var evTypeCount = weightList.get_child_count();
+	var evTypeCount = floorData.events.size();
+
+	
 	var firstTab = true;
 	for i in evTypeCount:
-		var key = floorData.nodeTypeWeights.keys()[i];
+		
+		var key = floorData.events.keys()[i];
 		typeTabs.add_tab(key);
 				
 		var evScroll = EVENT_SCROLL_OBJ.instantiate();
@@ -281,9 +290,7 @@ func LoadResource(floorData : FloorResource):
 	for dial in floorData.bootDialogues:
 		var dialEntry = DIALOGUE_ENTRY_OBJ.instantiate();
 		dialogueList.add_child(dialEntry)
-		dialEntry.LoadResource(dial);
-		
-	
+		dialEntry.LoadResource(dial);	
 	
 	return;
 	
