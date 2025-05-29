@@ -28,8 +28,9 @@ const OUTPUT_PATH = "res://output";
 @onready var imageInput = $WorldInfoScreen/SplashImage/TextureName
 @onready var bootDialogueList = $WorldInfoScreen/BootDialogues/List
 
+@onready var maxFloorsInput = $FloorInfoScreen/HBoxContainer2/MaxFloorInput
 @onready var floorList = $FloorInfoScreen/FloorScroll/FloorList
-@onready var specialFloorList = $SideMenu/VBoxContainer/FloorInfo/SpecialFloors
+@onready var specialFloorList = $SpecialFloorScreen/FloorScroll/FloorList
 
 @onready var gameplayVarList = $GameplayScreen/Hold/Rules/GameplayVarList
 
@@ -164,6 +165,7 @@ func SaveResource(textRes : bool = true):
 	worldRes.internalName = internalName.text;
 	worldRes.description = descInput.text;
 	worldRes.menuImageFilename = imageInput.text;
+	worldRes.maxFloors = int(maxFloorsInput.text)
 	
 	for startDial : DialogueEntry in bootDialogueList.get_children():
 		worldRes.bootDialogueArray.append(startDial.SaveResource());
@@ -261,6 +263,7 @@ func LoadResource(fileName : String = ""):
 	internalName.text = worldRes.internalName;
 	descInput.text = worldRes.description;
 	imageInput.text = worldRes.menuImageFilename;
+	maxFloorsInput.text = str(worldRes.maxFloors);
 
 	for dial in worldRes.bootDialogueArray:
 		var dialEntry := DIAL_ENTRY_OBJ.instantiate();

@@ -10,12 +10,17 @@ extends Resource
 @export_group("Map Generation")
 @export var minLayers : int = 0;
 @export var maxLayers : int = 0
+@export var layerWeights : Array[float] = [];
 @export var minNodesPerLayer : int = 0;
 @export var maxNodesPerLayer : int = 0;
+@export var nodesPerLayerWeights : Array[float] = [];
 @export var minNodePaths : int = 0;
 @export var maxNodePaths : int = 0;
+@export var nodePathWeights : Array[float] = [];
 @export var minStartNodes : int = 0;
 @export var maxStartNodes : int = 0;
+@export var startNodeWeights : Array[float] = [];
+
 @export var nodeTypeWeights : Dictionary = {}
 @export var additionalMapGenRules : String = "";
 

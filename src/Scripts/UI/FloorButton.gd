@@ -29,6 +29,12 @@ const DIALOGUE_ENTRY_OBJ = preload("res://src/Scenes/Utils/DialogueEntry.tscn");
 @onready var minStartNodes = $Organizer/MapGenData/Right/StartNodes/MinInput
 @onready var maxStartNodes = $Organizer/MapGenData/Right/StartNodes/MaxInput
 @onready var weightList = $Organizer/MapGenData/Left/Weights/ScrollContainer/WeightList	
+
+@onready var layerWeights = $Organizer/MapGenData/Right/LayersWeight/ScrollContainer/WeightList
+@onready var nplWeights = $Organizer/MapGenData/Right/NPLayerWeight/ScrollContainer/WeightList
+@onready var startWeights = $Organizer/MapGenData/Right/StartWeights/ScrollContainer/WeightList
+@onready var pathsWeights = $Organizer/MapGenData/Right/PathWeights/ScrollContainer/WeightList
+
 @onready var mapGenRulesInput = $Organizer/MapGenData/Left/AdditionalRules/ScriptInput
 
 # Events
@@ -48,6 +54,55 @@ func _ready():
 	UpdateWeightTabs();
 	SetEventHolders();
 	return;
+
+func AddMapGenWeightEntry(_value : float = 0.0, type : int = 0):
+	match type:
+		0: # Layers
+			
+			
+			var count  = int(maxLayers.value) - int(minLayers.value) + 1
+			
+			for ch in layerWeights.get_children():
+				ch.free();
+			
+			for i in count:
+				var spinBox = SpinBox.new()
+				spinBox.step = 0.1;
+				layerWeights.add_child(spinBox);
+			
+		1: # Nodes per layer
+			var count  = int(maxNodesPerLayer.value) - int(minNodesPerLayer.value) + 1
+			
+			for ch in nplWeights.get_children():
+				ch.free();
+			
+			for i in count:
+				var spinBox = SpinBox.new()
+				spinBox.step = 0.1;
+				nplWeights.add_child(spinBox);
+		2: # Min paths
+			var count  = int(maxPaths.value) - int(minPaths.value) + 1
+			
+			for ch in pathsWeights.get_children():
+				ch.free();
+			
+			for i in count:
+				var spinBox = SpinBox.new()
+				spinBox.step = 0.1;
+				pathsWeights.add_child(spinBox);
+				
+			
+		3: # Start nodes
+			var count  = int(maxStartNodes.value) - int(minStartNodes.value) + 1
+			
+			for ch in startWeights.get_children():
+				ch.free();
+			
+			for i in count:
+				var spinBox = SpinBox.new()
+				spinBox.step = 0.1;
+				startWeights.add_child(spinBox);
+
 
 func SetEventHolders():
 	var typeNames = []
@@ -190,6 +245,22 @@ func SaveResource() -> FloorResource:
 	
 	floorRes.additionalMapGenRules = mapGenRulesInput.text;
 	
+	# Map gen weights
+	floorRes.layerWeights = []
+	for ch : SpinBox in layerWeights.get_children():
+		floorRes.layerWeights.append(ch.value)
+		
+	floorRes.nodesPerLayerWeights = []
+	for ch : SpinBox in nplWeights.get_children():
+		floorRes.nodesPerLayerWeights.append(ch.value)
+		
+	floorRes.startNodeWeights = []
+	for ch : SpinBox in startWeights.get_children():
+		floorRes.startNodeWeights.append(ch.value)
+		
+	floorRes.nodePathWeights = []
+	for ch : SpinBox in pathsWeights.get_children():
+		floorRes.nodePathWeights.append(ch.value)
 	
 	# Event pools
 	floorRes.nodeTypeWeights = {}
@@ -228,16 +299,48 @@ func LoadResource(floorData : FloorResource):
 	floorImage.text = floorData.splashImageFilename;
 	musicTrackName.text = floorData.floorMusicName;
 	
-	minLayers.value = (floorData.minLayers);
-	maxLayers.value = (floorData.maxLayers);
-	minNodesPerLayer.value = (floorData.minNodesPerLayer);
-	maxNodesPerLayer.value = (floorData.maxNodesPerLayer);
-	minPaths.value = (floorData.minNodePaths);
-	maxPaths.value = (floorData.maxNodePaths);
-	minStartNodes.value = (floorData.minStartNodes)
-	maxStartNodes.value = (floorData.maxStartNodes)
+	minLayers.set_value_no_signal(floorData.minLayers);
+	maxLayers.set_value_no_signal(floorData.maxLayers);
+	minNodesPerLayer.set_value_no_signal(floorData.minNodesPerLayer);
+	maxNodesPerLayer.set_value_no_signal(floorData.maxNodesPerLayer);
+	minPaths.set_value_no_signal(floorData.minNodePaths);
+	maxPaths.set_value_no_signal(floorData.maxNodePaths);
+	minStartNodes.set_value_no_signal(floorData.minStartNodes)
+	maxStartNodes.set_value_no_signal(floorData.maxStartNodes)
 	
 	mapGenRulesInput.text = floorData.additionalMapGenRules;
+	
+	# Map gen weights
+	for ch in layerWeights.get_children():
+		ch.free();
+	for ch in nplWeights.get_children():
+		ch.free();
+	for ch in pathsWeights.get_children():
+		ch.free();
+	for ch in startWeights.get_children():
+		ch.free();
+	
+	for i in floorData.layerWeights:
+		var spinBox = SpinBox.new()
+		spinBox.step = 0.1;
+		spinBox.value = i;
+		layerWeights.add_child(spinBox);
+	for i in floorData.nodesPerLayerWeights:
+		var spinBox = SpinBox.new()
+		spinBox.step = 0.1;
+		spinBox.value = i;
+		nplWeights.add_child(spinBox);
+	for i in floorData.nodePathWeights:
+		var spinBox = SpinBox.new()
+		spinBox.step = 0.1;
+		spinBox.value = i;
+		pathsWeights.add_child(spinBox);
+	for i in floorData.startNodeWeights:
+		var spinBox = SpinBox.new()
+		spinBox.step = 0.1;
+		spinBox.value = i;
+		startWeights.add_child(spinBox);
+	
 	
 	# Node weight table
 	for ch in eventScrollHolder.get_children():

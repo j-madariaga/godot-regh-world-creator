@@ -10,6 +10,7 @@ extends Resource
 
 @export_group("Floors")
 @export var floors : Array[FloorResource] = []
+@export var maxFloors : int = 5;
 
 @export_group("Special Floors")
 @export var specFloors : Array[FloorResource] = []

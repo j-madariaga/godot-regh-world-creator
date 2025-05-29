@@ -237,6 +237,21 @@ text = "Floor Info"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="HBoxContainer2" type="HBoxContainer" parent="FloorInfoScreen"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Title" type="Label" parent="FloorInfoScreen/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Max floors (Dflt. Goal)"
+vertical_alignment = 1
+
+[node name="MaxFloorInput" type="LineEdit" parent="FloorInfoScreen/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "5"
+
 [node name="HBoxContainer" type="HBoxContainer" parent="FloorInfoScreen"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -261,7 +276,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="SpecialFloorScreen" type="VBoxContainer" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -300,8 +314,10 @@ size_flags_vertical = 3
 
 [node name="FloorList" type="VBoxContainer" parent="SpecialFloorScreen/FloorScroll"]
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="GameplayScreen" type="VBoxContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
