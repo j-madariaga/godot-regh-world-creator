@@ -218,86 +218,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Paths" type="HBoxContainer" parent="Organizer/MapGenData/Right"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="Organizer/MapGenData/Right/Paths"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Paths (min, max)"
-
-[node name="MinInput" type="SpinBox" parent="Organizer/MapGenData/Right/Paths"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-size_flags_stretch_ratio = 0.2
-
-[node name="MaxInput" type="SpinBox" parent="Organizer/MapGenData/Right/Paths"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-size_flags_stretch_ratio = 0.2
-
-[node name="PathWeights" type="HBoxContainer" parent="Organizer/MapGenData/Right"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="Organizer/MapGenData/Right/PathWeights"]
-layout_mode = 2
-size_flags_horizontal = 2
-text = "    Weights"
-
-[node name="ScrollContainer" type="ScrollContainer" parent="Organizer/MapGenData/Right/PathWeights"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 5.77
-
-[node name="WeightList" type="HBoxContainer" parent="Organizer/MapGenData/Right/PathWeights/ScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="StartNodes" type="HBoxContainer" parent="Organizer/MapGenData/Right"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="Organizer/MapGenData/Right/StartNodes"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Start nodes (min, max)"
-
-[node name="MinInput" type="SpinBox" parent="Organizer/MapGenData/Right/StartNodes"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-size_flags_stretch_ratio = 0.2
-
-[node name="MaxInput" type="SpinBox" parent="Organizer/MapGenData/Right/StartNodes"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-size_flags_stretch_ratio = 0.2
-
-[node name="StartWeights" type="HBoxContainer" parent="Organizer/MapGenData/Right"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="Organizer/MapGenData/Right/StartWeights"]
-layout_mode = 2
-size_flags_horizontal = 2
-text = "    Weights"
-
-[node name="ScrollContainer" type="ScrollContainer" parent="Organizer/MapGenData/Right/StartWeights"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 5.77
-
-[node name="WeightList" type="HBoxContainer" parent="Organizer/MapGenData/Right/StartWeights/ScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
 [node name="VSeparator" type="VSeparator" parent="Organizer/MapGenData"]
 layout_mode = 2
 
@@ -444,10 +364,6 @@ layout_mode = 2
 [connection signal="value_changed" from="Organizer/MapGenData/Right/Layers/MaxInput" to="." method="AddMapGenWeightEntry" binds= [0]]
 [connection signal="value_changed" from="Organizer/MapGenData/Right/NPLayer/MinInput" to="." method="AddMapGenWeightEntry" binds= [1]]
 [connection signal="value_changed" from="Organizer/MapGenData/Right/NPLayer/MaxInput" to="." method="AddMapGenWeightEntry" binds= [1]]
-[connection signal="value_changed" from="Organizer/MapGenData/Right/Paths/MinInput" to="." method="AddMapGenWeightEntry" binds= [2]]
-[connection signal="changed" from="Organizer/MapGenData/Right/Paths/MaxInput" to="." method="AddMapGenWeightEntry" binds= [2]]
-[connection signal="value_changed" from="Organizer/MapGenData/Right/StartNodes/MinInput" to="." method="AddMapGenWeightEntry" binds= [3]]
-[connection signal="value_changed" from="Organizer/MapGenData/Right/StartNodes/MaxInput" to="." method="AddMapGenWeightEntry" binds= [3]]
 [connection signal="button_up" from="Organizer/EventData/Right/EventTypes/AddType" to="." method="AddNodeType"]
 [connection signal="tab_changed" from="Organizer/EventData/Right/TypeBar" to="." method="SwitchEventTab"]
 [connection signal="tab_close_pressed" from="Organizer/EventData/Right/TypeBar" to="." method="RemoveNodeType"]
