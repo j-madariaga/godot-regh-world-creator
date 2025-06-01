@@ -1,8 +1,6 @@
 class_name FightEncounterObj
 extends GameEncounterObj
 
-@onready var eventName = $VBoxContainer/Name/EventName
-@onready var descName = $VBoxContainer/Description/DescInput
 @onready var bgName = $VBoxContainer/Background/BackgroundName
 @onready var enemyNameInput = $VBoxContainer/Resource/EnemyName
 @onready var dialogueList = $VBoxContainer/Scroll/DialogueList
@@ -16,8 +14,6 @@ func AddDialogue():
 func SaveResource() -> FightEncounterResource:
 	var res := FightEncounterResource.new();
 	
-	res.title = eventName.text;
-	res.description = descName.text;
 	res.enemyResourceName = enemyNameInput.text;
 	res.eligible = eligibleToggle.button_pressed;
 	res.backgroundFilename = bgName.text;
@@ -27,8 +23,7 @@ func SaveResource() -> FightEncounterResource:
 	return res;
 	
 func LoadResource(res : FightEncounterResource):
-	eventName.text = res.title;
-	descName.text = res.description;
+
 	enemyNameInput.text = res.enemyResourceName;
 	eligibleToggle.button_pressed = res.eligible;
 	bgName.text = res.backgroundFilename;

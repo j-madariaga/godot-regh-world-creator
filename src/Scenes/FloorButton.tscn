@@ -50,7 +50,6 @@ tab_2/title = "Event Pool"
 tab_3/title = "Dialogues"
 
 [node name="GeneralInfoData" type="HBoxContainer" parent="Organizer"]
-visible = false
 layout_mode = 2
 offset_top = 35.0
 offset_right = 700.0
@@ -60,34 +59,6 @@ size_flags_vertical = 3
 [node name="Right" type="VBoxContainer" parent="Organizer/GeneralInfoData"]
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="Name" type="HBoxContainer" parent="Organizer/GeneralInfoData/Right"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Organizer/GeneralInfoData/Right/Name"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Name"
-
-[node name="NameInput" type="LineEdit" parent="Organizer/GeneralInfoData/Right/Name"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Description" type="VBoxContainer" parent="Organizer/GeneralInfoData/Right"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="Organizer/GeneralInfoData/Right/Description"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Description"
-
-[node name="DescInput" type="TextEdit" parent="Organizer/GeneralInfoData/Right/Description"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-wrap_mode = 1
-autowrap_mode = 2
 
 [node name="Splash" type="VBoxContainer" parent="Organizer/GeneralInfoData/Right"]
 layout_mode = 2
@@ -126,6 +97,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="MapGenData" type="HBoxContainer" parent="Organizer"]
+visible = false
 layout_mode = 2
 offset_left = 29.0
 offset_top = 36.0

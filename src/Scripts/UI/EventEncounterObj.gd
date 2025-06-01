@@ -9,8 +9,6 @@ const ENDING_OBJ = preload("res://src/Scenes/Utils/EventEndingObj.tscn")
 @onready var endingScreen = $Organizer/EndingScreen
 
 
-@onready var eventName = $Organizer/MainScreen/Name/EventName
-@onready var descName = $Organizer/MainScreen/Description/DescInput
 @onready var eligibleToggle = $Organizer/MainScreen/EligibleFromPool
 @onready var dialogueList = $Organizer/MainScreen/Scroll/DialogueList
 
@@ -50,8 +48,6 @@ func AddDialogue():
 
 func SaveResource() -> EventEncounterResource:
 	var res := EventEncounterResource.new();
-	res.title = eventName.text;
-	res.description = descName.text;
 	res.eligible = eligibleToggle.button_pressed;
 	
 	for ch in dialogueList.get_children():
@@ -66,8 +62,6 @@ func SaveResource() -> EventEncounterResource:
 	return res;
 	
 func LoadResource(res : EventEncounterResource):
-	eventName.text = res.title;
-	descName.text = res.description;
 	eligibleToggle.button_pressed = res.eligible;
 	
 	for dial in res.dialogueData:

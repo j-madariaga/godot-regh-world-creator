@@ -32,40 +32,8 @@ text = "X
 "
 
 [node name="MainScreen" type="VBoxContainer" parent="Organizer"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
-
-[node name="Name" type="HBoxContainer" parent="Organizer/MainScreen"]
-layout_mode = 2
-size_flags_horizontal = 5
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="Organizer/MainScreen/Name"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Event name"
-
-[node name="EventName" type="LineEdit" parent="Organizer/MainScreen/Name"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Description" type="VBoxContainer" parent="Organizer/MainScreen"]
-layout_mode = 2
-size_flags_horizontal = 5
-size_flags_vertical = 3
-size_flags_stretch_ratio = 3.64
-
-[node name="Label" type="Label" parent="Organizer/MainScreen/Description"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Description"
-
-[node name="DescInput" type="TextEdit" parent="Organizer/MainScreen/Description"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-size_flags_stretch_ratio = 0.18
 
 [node name="ButtonHolder" type="HBoxContainer" parent="Organizer/MainScreen"]
 layout_mode = 2
@@ -125,6 +93,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="EndingScreen" type="VBoxContainer" parent="Organizer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 

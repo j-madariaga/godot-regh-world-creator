@@ -1,8 +1,6 @@
 class_name BossEncounterObj
 extends GameEncounterObj
 
-@onready var eventName = $VBoxContainer/Name/EventName
-@onready var descName = $VBoxContainer/Description/DescInput
 @onready var bgName = $VBoxContainer/Background/BackgroundName
 @onready var bossTimer = $"VBoxContainer/BossTimer/TimeInput"
 @onready var enemyNameInput = $VBoxContainer/Resource/EnemyName
@@ -17,8 +15,6 @@ func AddDialogue():
 
 func SaveResource() -> BossEncounterResource:
 	var res := BossEncounterResource.new();
-	res.title = eventName.text;
-	res.description = descName.text;
 	res.enemyResourceName = enemyNameInput.text;
 	res.eligible = eligibleToggle.button_pressed;
 	res.backgroundFilename = bgName.text; 
@@ -29,9 +25,6 @@ func SaveResource() -> BossEncounterResource:
 	return res;
 	
 func LoadResource(res : BossEncounterResource):
-	
-	eventName.text = res.title;
-	descName.text = res.description;
 	enemyNameInput.text = res.enemyResourceName;
 	eligibleToggle.button_pressed = res.eligible;
 	bgName.text = res.backgroundFilename;

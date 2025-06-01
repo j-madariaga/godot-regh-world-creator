@@ -14,8 +14,6 @@ const DIALOGUE_ENTRY_OBJ = preload("res://src/Scenes/Utils/DialogueEntry.tscn");
 @onready var dialogueScreen = $Organizer/DialogueData
 
 # General data
-@onready var floorName = $Organizer/GeneralInfoData/Right/Name/NameInput
-@onready var floorDesc = $Organizer/GeneralInfoData/Right/Description/DescInput
 @onready var floorImage = $Organizer/GeneralInfoData/Right/Splash/ImageInput
 @onready var musicTrackName = $Organizer/GeneralInfoData/Left/Music/MusicInput
 
@@ -172,8 +170,6 @@ func UpdateWeightTabs():
 func SaveJSON() -> Dictionary:
 	var floorData = {};
 	floorData["info"] = {};
-	floorData["info"]["name"] = floorName.text;
-	floorData["info"]["description"] = floorDesc.text;
 	floorData["info"]["splashImage"] = floorImage.text;
 	floorData["info"]["musicTrack"] = musicTrackName.text;
 	
@@ -200,8 +196,6 @@ func SaveJSON() -> Dictionary:
 	
 func SaveResource() -> FloorResource:
 	var floorRes := FloorResource.new();
-	floorRes.name = floorName.text;
-	floorRes.description = floorDesc.text;
 	floorRes.splashImageFilename = floorImage.text;
 	floorRes.floorMusicName = musicTrackName.text;
 	
@@ -229,12 +223,25 @@ func SaveResource() -> FloorResource:
 		floorRes.nodeTypeWeights[typeKey] = float(weightChild.weightInput.text);
 		
 	for i in eventScrollHolder.get_child_count():
-		
 		var evScroll: EventScroll = eventScrollHolder.get_child(i);
 		floorRes.events[evScroll.eventType] = [];
 		
+		var idInit := "";
+		match evScroll.eventType:
+			"ENCOUNTER":
+				idInit = "Ev";
+			"BOSS":
+				idInit = "B";
+			"FIGHT":
+				idInit = "F";
+			"CHALLENGE":
+				idInit = "C";
+			
+		var count = 0;
 		for ev : GameEncounterObj in evScroll.eventList.get_children():
 			floorRes.events[evScroll.eventType].append(ev.SaveResource());
+			floorRes.events[evScroll.eventType][count].internalID = idInit + str(count);
+			count += 1;
 			
 	# Floor init dialogues
 	for dial in dialogueList.get_children():
@@ -253,8 +260,6 @@ func LoadJSON(_floorData := {}):
 	return;
 	
 func LoadResource(floorData : FloorResource):
-	floorName.text =  floorData.name;
-	floorDesc.text = floorData.description;
 	floorImage.text = floorData.splashImageFilename;
 	musicTrackName.text = floorData.floorMusicName;
 	

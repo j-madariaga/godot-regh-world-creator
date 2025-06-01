@@ -22,9 +22,7 @@ const OUTPUT_PATH = "res://output";
 
 @onready var inputFilename = $SideMenu/VBoxContainer/FileSave/FilenameInput
 
-@onready var projName = $WorldInfoScreen/NameContainer/NameInput
 @onready var internalName = $WorldInfoScreen/NameContainer/InternalNameInput
-@onready var descInput = $WorldInfoScreen/DescInput
 @onready var imageInput = $WorldInfoScreen/SplashImage/TextureName
 @onready var bootDialogueList = $WorldInfoScreen/BootDialogues/List
 
@@ -161,20 +159,25 @@ func _notification(what):
 func SaveResource(textRes : bool = true):
 	
 	var worldRes = WorldResource.new();
-	worldRes.name = projName.text;
 	worldRes.internalName = internalName.text;
-	worldRes.description = descInput.text;
+
 	worldRes.menuImageFilename = imageInput.text;
 	worldRes.maxFloors = int(maxFloorsInput.text)
 	
 	for startDial : DialogueEntry in bootDialogueList.get_children():
 		worldRes.bootDialogueArray.append(startDial.SaveResource());
 	
+	var count = 0;
 	for fl : FloorButton in floorList.get_children():
-		worldRes.floors.append(fl.SaveResource()); 
+		worldRes.floors.append(fl.SaveResource());
+		worldRes.floors[count].internalID = "F" + str(count);
+		count += 1;
 		
+	count = 0;
 	for specFl : FloorButton in specialFloorList.get_children():
 		worldRes.specFloors.append(specFl.SaveResource()); 
+		worldRes.specFloors[count].internalID = "SF" + str(count);
+		count += 1;
 		
 	worldRes.gameplayVariables.clear();
 	for v in gameplayVarList.get_children():
@@ -203,9 +206,7 @@ func SaveJSON():
 	worldData["difficulty"] = [];
 	worldData["endings"] = [];
 	
-	worldData["worldInfo"]["name"] = projName.text;
 	worldData["worldInfo"]["internalName"] = internalName.text;
-	worldData["worldInfo"]["description"] = descInput.text;
 	worldData["worldInfo"]["image"] = imageInput.text;
 	
 	worldData["bootDialogueArray"] = [];
@@ -259,9 +260,8 @@ func LoadResource(fileName : String = ""):
 		print("ERROR: resource % s failed to load!" % [fileName]);
 		return;
 		
-	projName.text = worldRes.name;
 	internalName.text = worldRes.internalName;
-	descInput.text = worldRes.description;
+
 	imageInput.text = worldRes.menuImageFilename;
 	maxFloorsInput.text = str(worldRes.maxFloors);
 
@@ -320,10 +320,8 @@ func Load(fileName : String = ""):
 	return;	
 
 func Clear():
-	projName.text = "";
 	internalName.text = "";
 	imageInput.text = "";
-	descInput.text = "";
 	
 	for ch in bootDialogueList.get_children():
 		ch.queue_free();

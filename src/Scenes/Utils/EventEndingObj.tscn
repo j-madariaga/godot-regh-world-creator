@@ -21,12 +21,6 @@ layout_mode = 2
 size_flags_horizontal = 10
 text = "  X  "
 
-[node name="ScreenTextInput" type="TextEdit" parent="."]
-layout_mode = 2
-size_flags_vertical = 3
-wrap_mode = 1
-autowrap_mode = 2
-
 [node name="Dialogues" type="HBoxContainer" parent="."]
 layout_mode = 2
 

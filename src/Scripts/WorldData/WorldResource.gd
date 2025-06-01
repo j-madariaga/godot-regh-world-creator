@@ -2,9 +2,7 @@ class_name WorldResource
 extends Resource
 
 @export_group("General info")
-@export var name : String = "";
 @export var internalName : String = "";
-@export var description  : String =  "";
 @export var menuImageFilename : String = "";
 @export var bootDialogueArray := [];
 

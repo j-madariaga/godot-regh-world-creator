@@ -2,8 +2,7 @@ class_name FloorResource
 extends Resource
 
 @export_group("General info")
-@export var name : String = "";
-@export var description : String = "";
+@export var internalID : String = "";
 @export var splashImageFilename : String= "";
 @export var floorMusicName : String = "";
 

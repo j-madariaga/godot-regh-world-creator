@@ -4,8 +4,6 @@ extends VBoxContainer
 const DICT_ENTRY_OBJ = preload("res://src/Scenes/Utils/DictEntry.tscn");
 
 
-@onready var nameInput = $Organizer/Left/Name/NameInput
-@onready var descInput = $Organizer/Left/Description/DescInput
 @onready var imageInput = $Organizer/Left/Image/ImageInput
 @onready var endIdxInput = $"Organizer/Left/EndingIndex/EndIdxInput"
 
@@ -29,8 +27,6 @@ func AddRequirement():
 
 
 func LoadResource(res : EncounterOptionResource):
-	nameInput.text = res.title;
-	descInput.text = res.description;
 	imageInput.text = res.imageFilename;
 	endIdxInput.value = res.endIdx;
 	
@@ -48,8 +44,6 @@ func LoadResource(res : EncounterOptionResource):
 	
 func SaveResource() -> EncounterOptionResource:
 	var res := EncounterOptionResource.new();
-	res.title = nameInput.text;
-	res.description = descInput.text;
 	res.imageFilename = imageInput.text;
 	res.endIdx = endIdxInput.value;
 	

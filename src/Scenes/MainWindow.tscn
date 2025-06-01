@@ -123,7 +123,6 @@ layout_mode = 2
 text = "Close menu"
 
 [node name="WorldInfoScreen" type="VBoxContainer" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.465
@@ -148,16 +147,6 @@ vertical_alignment = 1
 [node name="NameContainer" type="HBoxContainer" parent="WorldInfoScreen"]
 layout_mode = 2
 
-[node name="NameText" type="Label" parent="WorldInfoScreen/NameContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.0
-text = "Name"
-
-[node name="NameInput" type="LineEdit" parent="WorldInfoScreen/NameContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
 [node name="InternalNameText" type="Label" parent="WorldInfoScreen/NameContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -180,19 +169,6 @@ text = "Splash texture (File name)"
 [node name="TextureName" type="LineEdit" parent="WorldInfoScreen/SplashImage"]
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="DescLabel" type="Label" parent="WorldInfoScreen"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 5
-text = "Description"
-vertical_alignment = 1
-
-[node name="DescInput" type="TextEdit" parent="WorldInfoScreen"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-wrap_mode = 1
 
 [node name="FirstBootDialogue" type="HBoxContainer" parent="WorldInfoScreen"]
 layout_mode = 2
@@ -276,6 +252,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="SpecialFloorScreen" type="VBoxContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0

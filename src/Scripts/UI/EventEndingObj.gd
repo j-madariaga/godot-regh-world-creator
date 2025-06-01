@@ -3,7 +3,6 @@ extends VBoxContainer
 
 const DIALOGUE_ENTRY_OBJ = preload("res://src/Scenes/Utils/DialogueEntry.tscn")
 
-@onready var endingInput = $ScreenTextInput
 @onready var endDialogues = $VBoxContainer/Scroll/DialogueList
 
 func OnClose():
@@ -15,7 +14,6 @@ func AddEndDialogue():
 
 func SaveResource() -> EncounterEndingResource:
 	var res := EncounterEndingResource.new();
-	res.endScreenText = endingInput.text;
 	
 	for end in endDialogues.get_children():
 		res.endDialogues.append(end.SaveResource())
@@ -23,7 +21,6 @@ func SaveResource() -> EncounterEndingResource:
 	return res;
 	
 func LoadResource(res : EncounterEndingResource):
-	endingInput.text = res.endScreenText;
 	
 	for end in res.endDialogues:
 		var dial = DIALOGUE_ENTRY_OBJ.instantiate();
