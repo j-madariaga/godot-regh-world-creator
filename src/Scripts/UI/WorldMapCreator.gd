@@ -5,6 +5,7 @@ const FLOOR_BUTTON_ARCH = preload("res://src/Scenes/FloorButton.tscn")
 const DIAL_ENTRY_OBJ = preload("res://src/Scenes/Utils/DialogueEntry.tscn")
 const WORLD_ENDING_OBJ = preload("res://src/Scenes/Utils/WorldEndingObj.tscn")
 const GAME_VAR_OBJ = preload("res://src/Scenes/Utils/GameplayVarEntry.tscn")
+const CHAR_ENTRY = preload("res://src/Scenes/Utils/CharacterEntry.tscn")
 
 @onready var sideMenu = $SideMenu
 @onready var sideMenuButton = $SideMenuButton
@@ -31,6 +32,10 @@ const OUTPUT_PATH = "res://output";
 @onready var specialFloorList = $SpecialFloorScreen/FloorScroll/FloorList
 
 @onready var gameplayVarList = $GameplayScreen/Hold/Rules/GameplayVarList
+
+@onready var charPool = $GameplayScreen/Hold/Characters/ScrollContainer/CharPool
+@onready var initCharPool = $GameplayScreen/Hold/Characters/ScrollContainer2/InitCharPool
+@onready var initPartySize = $GameplayScreen/Hold/Characters/HBoxContainer/InitPartySize
 
 @onready var endingList = $EndingsScreen/Scroll/EndingList
 
@@ -61,6 +66,19 @@ func AddBootDialogueEntry():
 func AddWorldEnding():
 	var end = WORLD_ENDING_OBJ.instantiate();
 	endingList.add_child(end);
+	
+	return;
+	
+func AddCharacterEntry(initParty : bool = false, data : Variant = null):
+	var entry = CHAR_ENTRY.instantiate();
+	
+	if initParty:
+		initCharPool.add_child(entry);
+	else:
+		charPool.add_child(entry);
+		
+	if data != null:
+		entry.charName.text = data;		
 	
 	return;
 
@@ -183,8 +201,15 @@ func SaveResource(textRes : bool = true):
 	for v in gameplayVarList.get_children():
 		var entry = v.Save()		
 		worldRes.gameplayVariables[entry["entryName"]] = entry["entryValue"];
-		
-		
+	
+	worldRes.characters.clear();
+	worldRes.initCharacters.clear();
+	worldRes.initPartySize = int(initPartySize.text);
+	for ch in charPool.get_children():
+		worldRes.characters.append(ch.charName.text);
+	for ch in initCharPool.get_children():
+		worldRes.initCharacters.append(ch.charName.text);
+	
 		
 	for end : WorldEndingObj in endingList.get_children():
 		worldRes.endings.append(end.SaveResource())
@@ -291,6 +316,12 @@ func LoadResource(fileName : String = ""):
 		vObj.Load(v, worldRes.gameplayVariables[v]);
 		
 	
+	initPartySize.text = str(worldRes.initPartySize);
+	for c in worldRes.characters:
+		AddCharacterEntry(false, c);
+	for c in worldRes.initCharacters:
+		AddCharacterEntry(true, c);
+	
 		
 	for end in worldRes.endings:
 		var endObj = WORLD_ENDING_OBJ.instantiate();
@@ -334,6 +365,13 @@ func Clear():
 		
 	for v in gameplayVarList.get_children():
 		v.queue_free();
+		
+	for c in charPool.get_children():
+		c.queue_free()
+		
+	initPartySize.text = "0";
+	for c in initCharPool.get_children():
+		c.queue_free()
 		
 	for end in endingList.get_children():
 		end.queue_free()

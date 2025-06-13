@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://dapsoqn1isunf"]
+
+[ext_resource type="Script" uid="uid://dhpq64mkrmrft" path="res://src/Scripts/UI/CharacterEntry.gd" id="1_hmel0"]
+
+[node name="CharacterEntry" type="HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+offset_right = 131.0
+offset_bottom = 31.0
+size_flags_horizontal = 3
+script = ExtResource("1_hmel0")
+
+[node name="CharName" type="LineEdit" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+text = "Delete"
+
+[connection signal="button_up" from="Button" to="." method="OnDelete"]

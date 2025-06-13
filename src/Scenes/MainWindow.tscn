@@ -11,6 +11,7 @@ grow_vertical = 2
 script = ExtResource("1_m2b2n")
 
 [node name="SideMenuButton" type="Button" parent="."]
+visible = false
 layout_mode = 0
 offset_right = 86.0
 offset_bottom = 59.0
@@ -18,30 +19,32 @@ text = "..."
 
 [node name="SideMenu" type="PanelContainer" parent="."]
 layout_mode = 1
-offset_right = 272.0
-offset_bottom = 898.0
+anchors_preset = -1
+anchor_right = 0.17
+anchor_bottom = 0.998
+offset_left = 7.0
+offset_bottom = -0.200012
 
 [node name="VBoxContainer" type="VBoxContainer" parent="SideMenu"]
 layout_mode = 2
 
 [node name="Title" type="Label" parent="SideMenu/VBoxContainer"]
 layout_mode = 2
-text = "WorldMapGenerator v0.1
-(Regular Heroes)"
+text = "
+WorldMapGenerator v0.3
+
+"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Separator5" type="Label" parent="SideMenu/VBoxContainer"]
+[node name="New world" type="Button" parent="SideMenu/VBoxContainer"]
 layout_mode = 2
-
-[node name="New world" type="Button" parent="SideMenu/VBoxContainer/Separator5"]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
 text = "New world"
 
 [node name="FileSave" type="HBoxContainer" parent="SideMenu/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.05
 
 [node name="FilenameInput" type="LineEdit" parent="SideMenu/VBoxContainer/FileSave"]
 layout_mode = 2
@@ -75,7 +78,7 @@ horizontal_scroll_mode = 0
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-size_flags_stretch_ratio = 2.09
+size_flags_stretch_ratio = 0.97
 
 [node name="Separator4" type="Label" parent="SideMenu/VBoxContainer"]
 layout_mode = 2
@@ -123,6 +126,7 @@ layout_mode = 2
 text = "Close menu"
 
 [node name="WorldInfoScreen" type="VBoxContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.465
@@ -294,7 +298,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="GameplayScreen" type="VBoxContainer" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -327,11 +330,50 @@ text = "Character pool"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="AddChar" type="Button" parent="GameplayScreen/Hold/Characters"]
+layout_mode = 2
+text = "Add character"
+
 [node name="ScrollContainer" type="ScrollContainer" parent="GameplayScreen/Hold/Characters"]
 layout_mode = 2
+size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GameplayScreen/Hold/Characters/ScrollContainer"]
+[node name="CharPool" type="VBoxContainer" parent="GameplayScreen/Hold/Characters/ScrollContainer"]
 layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label2" type="Label" parent="GameplayScreen/Hold/Characters"]
+layout_mode = 2
+text = "Possible initial characters"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AddInitChar" type="Button" parent="GameplayScreen/Hold/Characters"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Add character"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GameplayScreen/Hold/Characters"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="GameplayScreen/Hold/Characters/HBoxContainer"]
+layout_mode = 2
+text = "Initial amount"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InitPartySize" type="LineEdit" parent="GameplayScreen/Hold/Characters/HBoxContainer"]
+layout_mode = 2
+text = "2"
+alignment = 1
+
+[node name="ScrollContainer2" type="ScrollContainer" parent="GameplayScreen/Hold/Characters"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="InitCharPool" type="VBoxContainer" parent="GameplayScreen/Hold/Characters/ScrollContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="Rules" type="VBoxContainer" parent="GameplayScreen/Hold"]
 layout_mode = 2
@@ -422,7 +464,7 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [connection signal="button_up" from="SideMenuButton" to="." method="ToggleSideMenu" binds= [true]]
-[connection signal="button_up" from="SideMenu/VBoxContainer/Separator5/New world" to="." method="NewWorld"]
+[connection signal="button_up" from="SideMenu/VBoxContainer/New world" to="." method="NewWorld"]
 [connection signal="button_up" from="SideMenu/VBoxContainer/FileSave/SaveButton" to="." method="Save"]
 [connection signal="button_up" from="SideMenu/VBoxContainer/GeneralInfo" to="." method="OpenMenu" binds= [0]]
 [connection signal="button_up" from="SideMenu/VBoxContainer/FloorInfo/MainFloors" to="." method="OpenMenu" binds= [1]]
@@ -434,5 +476,7 @@ size_flags_vertical = 3
 [connection signal="button_up" from="WorldInfoScreen/AddBootDialogue" to="." method="AddBootDialogueEntry"]
 [connection signal="button_up" from="FloorInfoScreen/HBoxContainer/AddFloorButton" to="." method="AddFloorButton"]
 [connection signal="button_up" from="SpecialFloorScreen/HBoxContainer/AddFloorButton" to="." method="AddSpecialFloorButton"]
+[connection signal="button_up" from="GameplayScreen/Hold/Characters/AddChar" to="." method="AddCharacterEntry"]
+[connection signal="button_up" from="GameplayScreen/Hold/Characters/AddInitChar" to="." method="AddCharacterEntry" binds= [true]]
 [connection signal="button_up" from="GameplayScreen/Hold/Rules/Button" to="." method="AddGameplayVariable"]
 [connection signal="button_up" from="EndingsScreen/AddEnding" to="." method="AddWorldEnding"]
